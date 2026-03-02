@@ -13,7 +13,7 @@ export interface Product {
 export const productsData: Product[] = [
   {
     id: 1,
-    name: "Análisis de Datos",
+    name: "Consultoría Datos Ganaderos",
     price: "$100.000/hora",
     description: "Servicios de análisis de datos para aumentar la eficiencia y rentabilidad de su empresa.",
     image: "/lovable-uploads/fb7b2fb0-41bf-4e3e-a48e-494045052acd.png",
