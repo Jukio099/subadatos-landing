@@ -12,9 +12,22 @@ const PaymentSuccess = () => {
   const { product, integrationId } = location.state || {};
 
   useEffect(() => {
+    // Inyectar noindex — página transaccional, no debe indexarse
+    const metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    metaRobots.content = 'noindex, nofollow';
+    metaRobots.setAttribute('data-page', 'payment-success');
+    document.head.appendChild(metaRobots);
+
     if (!product) {
       navigate('/');
     }
+
+    return () => {
+      // Limpiar al desmontar
+      const tag = document.querySelector('meta[data-page="payment-success"]');
+      if (tag) document.head.removeChild(tag);
+    };
   }, [product, navigate]);
 
   if (!product) {

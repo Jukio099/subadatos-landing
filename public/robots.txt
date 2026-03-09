@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.subadatos.com/sitemap.xml
+Sitemap: https://subadatos.com/sitemap.xml

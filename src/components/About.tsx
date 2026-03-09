@@ -27,11 +27,21 @@ const About = () => {
             <p className="text-gray-700 mb-6">
               Desde hace más de 2 años, en SUBADATOS nos dedicamos a proporcionar a las empresas e industrias
               soluciones avanzadas para el análisis y gestión de datos, adaptadas específicamente a las
-              necesidades de cada sector en Colombia.
+              necesidades de cada sector en Colombia. Nos especializamos en el monitoreo y análisis de
+              precios de ganado en subastas ganaderas colombianas, ayudando a ganaderos, comerciantes
+              y empresas del sector agropecuario a tomar decisiones informadas y rentables.
+            </p>
+            <p className="text-gray-700 mb-6">
+              Nuestro motor de inteligencia artificial procesa datos históricos y en tiempo real de
+              subastas en las principales plazas ganaderas del país — Medellín, Bogotá, Montería, Valledupar
+              y más de 20 municipios adicionales. Analizamos categorías de bovinos como macho de levante,
+              hembra de vientre, toros, novillas y ganado en ceba, permitiéndote conocer el precio por
+              kilogramo con alta precisión antes de entrar a subastar.
             </p>
             <p className="text-gray-700 mb-8">
-              Nuestro compromiso es contribuir al desarrollo sostenible de los negocios mediante servicios de
-              alta calidad y un servicio técnico especializado que garantice el éxito de su empresa.
+              Nuestro compromiso es contribuir al desarrollo sostenible del sector ganadero colombiano
+              mediante servicios de alta calidad y tecnología especializada que garantice el éxito de su
+              empresa. Con SUBADATOS, la información del mercado ganadero trabaja para usted.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
