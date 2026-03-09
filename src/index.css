@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Google Fonts se cargan en index.html con preconnect para no bloquear el render */
 
 @tailwind base;
 @tailwind components;

@@ -1,6 +1,6 @@
-
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Phone, Mail, MapPin, Calendar } from 'lucide-react';
+import { WHATSAPP_GENERAL, DISPLAY_PHONE, EMAIL } from '@/config/constants';
 
 declare global {
   interface Window {
@@ -17,33 +17,42 @@ declare global {
   }
 }
 
+const CALENDAR_URL =
+  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1jukDDZEzrnmkKKAnSxB3Bn8iggOflE6zOEaj7FJ8bGhM2EBcj8XiPfO9xy3EEyIvELBJXORZZ?gv=true';
+
 const Contact = () => {
-  const whatsappLink = "https://wa.me/573144423197?text=Hola,%20estoy%20interesado%2Fa%20en%20sus%20servicios.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n%3F";
-  const appointmentButtonRef = useRef<HTMLDivElement>(null);
+  const headerButtonRef = useRef<HTMLDivElement>(null);
+  const cardButtonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Initialize Google Calendar button when component mounts
-    const loadCalendarButton = () => {
-      if (window.calendar && appointmentButtonRef.current) {
+    const loadButtons = () => {
+      if (!window.calendar) return;
+      if (headerButtonRef.current) {
         window.calendar.schedulingButton.load({
-          url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1jukDDZEzrnmkKKAnSxB3Bn8iggOflE6zOEaj7FJ8bGhM2EBcj8XiPfO9xy3EEyIvELBJXORZZ?gv=true',
-          color: '#35a85d', // Using nature-600 color to match the site's theme
+          url: CALENDAR_URL,
+          color: '#35a85d',
           label: 'Reservar una cita',
-          target: appointmentButtonRef.current,
+          target: headerButtonRef.current,
+        });
+      }
+      if (cardButtonRef.current) {
+        window.calendar.schedulingButton.load({
+          url: CALENDAR_URL,
+          color: '#35a85d',
+          label: 'Reservar una cita',
+          target: cardButtonRef.current,
         });
       }
     };
 
-    // Check if calendar is already available
     if (window.calendar) {
-      loadCalendarButton();
+      loadButtons();
     } else {
-      // If not available yet, wait for window load
-      window.addEventListener('load', loadCalendarButton);
+      window.addEventListener('load', loadButtons);
     }
 
     return () => {
-      window.removeEventListener('load', loadCalendarButton);
+      window.removeEventListener('load', loadButtons);
     };
   }, []);
 
@@ -61,20 +70,15 @@ const Contact = () => {
           </p>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={whatsappLink}
+              href={WHATSAPP_GENERAL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center bg-green-600 hover:bg-green-700 px-5 py-3 rounded-full text-white font-medium transition-colors"
             >
               <Phone className="mr-2 h-5 w-5" /> Contactar por WhatsApp
             </a>
-
-            {/* Google Calendar Appointment Button Container */}
-            <div
-              ref={appointmentButtonRef}
-              className="google-calendar-button-container"
-              aria-label="Botón para agendar una cita"
-            ></div>
+            {/* Google Calendar Button — header */}
+            <div ref={headerButtonRef} aria-label="Agendar una cita en Google Calendar" />
           </div>
         </div>
 
@@ -88,9 +92,7 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="font-semibold mb-1">Dirección</h4>
-                <p className="text-gray-600">
-                  Colombia
-                </p>
+                <p className="text-gray-600">Colombia</p>
               </div>
             </div>
 
@@ -99,11 +101,11 @@ const Contact = () => {
                 <Phone className="h-5 w-5 text-nature-700" />
               </div>
               <div>
-                <h4 className="font-semibold mb-1">Teléfono</h4>
+                <h4 className="font-semibold mb-1">Teléfono / WhatsApp</h4>
                 <p className="text-gray-600">
-                  +57 302 6836254<br />
+                  {DISPLAY_PHONE}<br />
                   <a
-                    href={whatsappLink}
+                    href={WHATSAPP_GENERAL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-earth-600 hover:underline"
@@ -121,7 +123,7 @@ const Contact = () => {
               <div>
                 <h4 className="font-semibold mb-1">Email</h4>
                 <p className="text-gray-600">
-                  subadatos@gmail.com
+                  <a href={`mailto:${EMAIL}`} className="hover:underline">{EMAIL}</a>
                 </p>
               </div>
             </div>
@@ -135,12 +137,9 @@ const Contact = () => {
                 <p className="text-gray-600 mb-2">
                   Reserva una cita para una asesoría personalizada
                 </p>
-                {/* Calendar button container for the card */}
-                <div
-                  className="google-calendar-card-button hidden md:block"
-                  aria-label="Botón para agendar una cita"
-                >
-                  <div ref={appointmentButtonRef} className="google-calendar-button-container"></div>
+                {/* Google Calendar Button — card (visible solo en desktop) */}
+                <div className="hidden md:block">
+                  <div ref={cardButtonRef} aria-label="Agendar una cita en Google Calendar" />
                 </div>
               </div>
             </div>
@@ -148,36 +147,13 @@ const Contact = () => {
             <div className="pt-4">
               <h4 className="font-semibold mb-2">Horario de atención</h4>
               <p className="text-gray-600">
-                Lunes a Viernes: 8:00 AM - 6:00 PM<br />
-                Sábados: 8:00 AM - 1:00 PM
+                Lunes a Viernes: 8:00 AM – 6:00 PM<br />
+                Sábados: 8:00 AM – 1:00 PM
               </p>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Add some custom styles to ensure the Google Calendar button looks good */}
-      <style>
-        {`
-        .google-calendar-button-container {
-          display: inline-block;
-        }
-        
-        /* Make sure the button matches our site theme */
-        :global(.appointment-button) {
-          background-color: #35a85d !important;
-          border-radius: 9999px !important;
-          padding: 0.75rem 1.25rem !important;
-          font-weight: 500 !important;
-          transition: all 0.2s ease-in-out !important;
-        }
-        
-        :global(.appointment-button:hover) {
-          background-color: #2c864c !important;
-          transform: translateY(-1px) !important;
-        }
-        `}
-      </style>
     </section>
   );
 };
