@@ -9,7 +9,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-nature-900 text-white pt-16 pb-8">
+    <footer className="bg-nature-900 text-white pt-10 md:pt-16 pb-6 md:pb-8">
       <div className="container-custom">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {/* Column 1: About */}

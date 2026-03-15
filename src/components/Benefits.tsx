@@ -22,14 +22,14 @@ const Benefits = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Benefit 1 */}
-          <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-nature-500 animate-on-scroll">
+          <div className="bg-white rounded-lg p-5 md:p-8 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-nature-500 animate-on-scroll">
             <div className="bg-nature-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
               <Database className="h-8 w-8 text-nature-600" />
             </div>
             <h3 className="text-xl font-bold mb-4 text-nature-800">Análisis de Datos Avanzado</h3>
             <p className="text-gray-600 mb-4">
-              Utilizamos técnicas avanzadas de análisis para extraer el máximo valor
-              de los datos de su empresa y transformarlos en decisiones estratégicas.
+              Consultá los precios históricos del ganado por plaza, categoría y peso.
+              Tomá decisiones antes de llegar a la subasta.
             </p>
             <ul className="space-y-2 mb-4">
               <li className="flex items-center gap-2 text-gray-700">
@@ -49,13 +49,13 @@ const Benefits = () => {
               onClick={() => navigate('/dashboard')}
               className="w-full bg-nature-600 hover:bg-nature-700 text-white flex items-center justify-center gap-2 mt-2"
             >
-              Ver Dashboard
+              Ver Consulta de Precios
               <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
 
           {/* Benefit 2 */}
-          <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-nature-500 animate-on-scroll">
+          <div className="bg-white rounded-lg p-5 md:p-8 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-nature-500 animate-on-scroll">
             <div className="bg-nature-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
               <ChartBar className="h-8 w-8 text-nature-600" />
             </div>
@@ -81,7 +81,7 @@ const Benefits = () => {
           </div>
 
           {/* Benefit 3 */}
-          <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-nature-500 animate-on-scroll">
+          <div className="bg-white rounded-lg p-5 md:p-8 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-nature-500 animate-on-scroll">
             <div className="bg-nature-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
               <Leaf className="h-8 w-8 text-nature-600" />
             </div>

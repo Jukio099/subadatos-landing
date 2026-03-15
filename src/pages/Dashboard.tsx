@@ -10,7 +10,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center">
-        <p className="text-gray-500 text-lg">Redirigiendo al dashboard…</p>
+        <p className="text-gray-500 text-lg">Redirigiendo a Consulta de Precios…</p>
         <a
           href={STREAMLIT_URL}
           className="mt-4 inline-block text-nature-600 underline text-sm"

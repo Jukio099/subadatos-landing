@@ -38,8 +38,8 @@ const Index = () => {
       <Navbar />
       <Hero />
 
-      {/* Cattle Auction Animation Section */}
-      <section className="section-padding bg-white">
+      {/* Cattle Auction Animation Section — oculta en móvil (SVG ilegible < 768px) */}
+      <section className="hidden md:block section-padding bg-white">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
             <h2 className="text-3xl font-bold mb-2 text-gradient">Inteligencia Ganadera en Acción</h2>

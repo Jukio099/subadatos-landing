@@ -11,37 +11,38 @@ const Hero = () => {
     <section id="inicio" className="relative min-h-screen flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
+        {/* TODO: Reemplazar con foto real de una subasta ganadera colombiana */}
         <div
           className="h-full w-full bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80')",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
         </div>
       </div>
 
       <div className="container-custom relative z-10 pt-20">
         <div className="max-w-3xl animate-on-scroll visible">
           <span className="inline-block bg-nature-500/90 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">
-            Análisis de datos · Servicios de IA · Mejora tu negocio
+            Precios de ganado · Subastas en Colombia · Toma mejores decisiones
           </span>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
             Mejora tus ganancias con <span className="text-nature-400">análisis de datos</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8">
-            En SUBADATOS te ayudamos a mejorar la gestión y análisis de tus datos. Potencia tu empresa con
-            nuestros servicios profesionales de análisis y soluciones de IA.
+          <p className="text-lg md:text-xl text-white/90 mb-6">
+            En SUBADATOS te mostramos los precios del ganado en las subastas de Colombia
+            para que vendas en el momento justo y ganes más.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a href={WHATSAPP_GENERAL} target="_blank" rel="noopener noreferrer" className="inline-block">
-              <Button className="bg-nature-600 hover:bg-nature-700 text-white text-lg py-6 px-8">
+              <Button className="w-full bg-nature-600 hover:bg-nature-700 text-white text-base py-4 px-6 sm:text-lg sm:py-6 sm:px-8">
                 <Phone className="mr-2 h-5 w-5" /> Contactar por WhatsApp
               </Button>
             </a>
             <Button
               variant="outline"
-              className="bg-transparent border-white text-white hover:bg-white/10 text-lg py-6 px-8"
+              className="bg-transparent border-white text-white hover:bg-white/10 text-base py-4 px-6 sm:text-lg sm:py-6 sm:px-8"
               onClick={() => scrollToSection('productos')}
             >
               Ver Servicios

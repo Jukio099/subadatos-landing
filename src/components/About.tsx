@@ -7,12 +7,14 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-on-scroll">
             <div className="relative">
+              {/* TODO: Reemplazar con foto real del equipo o de un cliente ganadero */}
               <img
                 src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Análisis de datos ganaderos"
-                className="w-full rounded-lg shadow-xl"
+                className="w-full rounded-lg shadow-xl max-h-60 sm:max-h-80 md:max-h-none object-cover"
                 loading="lazy"
               />
+              <div className="absolute inset-0 bg-nature-900/10 rounded-lg pointer-events-none"></div>
               <div className="absolute -bottom-6 -right-6 bg-nature-50 p-5 rounded-lg shadow-lg border-l-4 border-nature-500 hidden md:block">
                 <p className="font-bold text-xl">2+ años</p>
                 <p className="text-gray-600">de experiencia</p>
@@ -48,29 +50,29 @@ const About = () => {
               <div className="flex items-start space-x-3">
                 <CheckCircle className="text-nature-600 h-6 w-6 mt-0.5" />
                 <div>
-                  <h4 className="font-semibold mb-1">Análisis Avanzados</h4>
-                  <p className="text-sm text-gray-600">Extracción de valor de sus datos</p>
+                  <h4 className="font-semibold mb-1">Precios en Tiempo Real</h4>
+                  <p className="text-sm text-gray-600">Consulta precios actuales de subasta</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <CheckCircle className="text-nature-600 h-6 w-6 mt-0.5" />
                 <div>
-                  <h4 className="font-semibold mb-1">Asesoría Técnica</h4>
-                  <p className="text-sm text-gray-600">Expertos a su disposición</p>
+                  <h4 className="font-semibold mb-1">Asesoría Personal</h4>
+                  <p className="text-sm text-gray-600">Te ayudamos cuando lo necesites</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <CheckCircle className="text-nature-600 h-6 w-6 mt-0.5" />
                 <div>
-                  <h4 className="font-semibold mb-1">Soluciones de IA</h4>
-                  <p className="text-sm text-gray-600">Tecnología de vanguardia</p>
+                  <h4 className="font-semibold mb-1">Predicción de Precios</h4>
+                  <p className="text-sm text-gray-600">Estimamos el precio antes de subastar</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <CheckCircle className="text-nature-600 h-6 w-6 mt-0.5" />
                 <div>
-                  <h4 className="font-semibold mb-1">Resultados Garantizados</h4>
-                  <p className="text-sm text-gray-600">Mejora en la toma de decisiones</p>
+                  <h4 className="font-semibold mb-1">Resultados Comprobados</h4>
+                  <p className="text-sm text-gray-600">Clientes con mejores resultados</p>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const testimonials = [
@@ -25,7 +25,7 @@ const testimonials = [
     name: "Fernando Suárez",
     role: "Propietario, Finca San José",
     content:
-      "El dashboard de datos ganaderos de SUBADATOS nos permite tomar decisiones más inteligentes en cada subasta. La visualización en tiempo real es una ventaja competitiva enorme.",
+      "La consulta de precios de SUBADATOS nos permite decidir mejor en cada subasta. Ver los precios al instante nos da una ventaja enorme frente a los demás compradores.",
     avatar: "https://randomuser.me/api/portraits/men/11.jpg",
     rating: 4,
   },
@@ -42,7 +42,13 @@ const testimonials = [
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const visibleCount = 2;
+  const [visibleCount, setVisibleCount] = useState(window.innerWidth >= 768 ? 2 : 1);
+
+  useEffect(() => {
+    const handleResize = () => setVisibleCount(window.innerWidth >= 768 ? 2 : 1);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const next = () =>
     setCurrentIndex(prev =>

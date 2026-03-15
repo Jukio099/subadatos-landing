@@ -60,7 +60,7 @@ const Navbar = () => {
               isScrolled ? "text-foreground hover:text-nature-600" : "text-white hover:text-nature-300"
             )}>
               <BarChart3 className="h-4 w-4 mr-1" />
-              <span>Dashboard</span>
+              <span>Consulta de Precios</span>
             </div>
             <Badge
               variant="default"
@@ -138,7 +138,7 @@ const Navbar = () => {
             >
               <div className="flex items-center">
                 <BarChart3 className="h-4 w-4 mr-1" />
-                <span>Dashboard</span>
+                <span>Consulta de Precios</span>
               </div>
               <Badge className="bg-secondary text-white text-xs">Nuevo</Badge>
             </Link>

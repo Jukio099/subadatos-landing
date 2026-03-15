@@ -77,8 +77,8 @@ const Contact = () => {
             >
               <Phone className="mr-2 h-5 w-5" /> Contactar por WhatsApp
             </a>
-            {/* Google Calendar Button — header */}
-            <div ref={headerButtonRef} aria-label="Agendar una cita en Google Calendar" />
+            {/* Google Calendar Button — header (oculto en móvil) */}
+            <div ref={headerButtonRef} aria-label="Agendar una cita en Google Calendar" className="hidden sm:block" />
           </div>
         </div>
 
