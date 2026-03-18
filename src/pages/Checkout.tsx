@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,6 +11,19 @@ const Checkout = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
+
+  useEffect(() => {
+    // Página transaccional — no debe indexarse
+    const metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    metaRobots.content = 'noindex, nofollow';
+    metaRobots.setAttribute('data-page', 'checkout');
+    document.head.appendChild(metaRobots);
+    return () => {
+      const tag = document.querySelector('meta[data-page="checkout"]');
+      if (tag) document.head.removeChild(tag);
+    };
+  }, []);
 
   const product = location.state?.product;
 
