@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import { usePageSeo } from '@/hooks/use-page-seo';
 import { CircleCheck, Home, Phone } from 'lucide-react';
 
 const PaymentSuccess = () => {
@@ -11,23 +12,15 @@ const PaymentSuccess = () => {
   const navigate = useNavigate();
   const { product, integrationId } = location.state || {};
 
-  useEffect(() => {
-    // Inyectar noindex — página transaccional, no debe indexarse
-    const metaRobots = document.createElement('meta');
-    metaRobots.name = 'robots';
-    metaRobots.content = 'noindex, nofollow';
-    metaRobots.setAttribute('data-page', 'payment-success');
-    document.head.appendChild(metaRobots);
+  usePageSeo({
+    title: 'Pago iniciado | SUBADATOS',
+    robots: 'noindex, nofollow',
+  });
 
+  useEffect(() => {
     if (!product) {
       navigate('/');
     }
-
-    return () => {
-      // Limpiar al desmontar
-      const tag = document.querySelector('meta[data-page="payment-success"]');
-      if (tag) document.head.removeChild(tag);
-    };
   }, [product, navigate]);
 
   if (!product) {

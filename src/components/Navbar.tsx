@@ -5,6 +5,7 @@ import { Menu, X, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
+import { DASHBOARD_URL } from '@/config/constants';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,9 +22,6 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    // If it's a route instead of a section, don't try to scroll
-    if (id === 'dashboard') return;
-
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -51,9 +49,11 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link
-            to="/dashboard"
+          <a
+            href={DASHBOARD_URL}
             className="relative flex items-center group"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <div className={cn(
               "flex items-center transition-colors",
@@ -68,7 +68,7 @@ const Navbar = () => {
             >
               Nuevo
             </Badge>
-          </Link>
+          </a>
           <button
             onClick={() => scrollToSection('inicio')}
             className={cn(
@@ -131,17 +131,19 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg py-4 px-6 absolute top-full left-0 w-full animate-fade-in">
           <div className="flex flex-col space-y-4">
-            <Link
-              to="/dashboard"
+            <a
+              href={DASHBOARD_URL}
               className="flex items-center justify-between text-foreground hover:text-nature-600 transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <div className="flex items-center">
                 <BarChart3 className="h-4 w-4 mr-1" />
                 <span>Consulta de Precios</span>
               </div>
               <Badge className="bg-secondary text-white text-xs">Nuevo</Badge>
-            </Link>
+            </a>
             <button
               onClick={() => scrollToSection('inicio')}
               className="text-foreground hover:text-nature-600 transition-colors py-2"

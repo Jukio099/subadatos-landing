@@ -1,10 +1,8 @@
 import { ArrowRight, CheckSquare, Database, ChartBar, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { DASHBOARD_URL } from '@/config/constants';
 
 const Benefits = () => {
-  const navigate = useNavigate();
-
   return (
     <section id="beneficios" className="section-padding relative overflow-hidden">
       <div className="absolute -top-10 -right-10 w-64 h-64 bg-nature-100 rounded-full opacity-60 blur-3xl"></div>
@@ -45,12 +43,16 @@ const Benefits = () => {
                 <span>Informes personalizados</span>
               </li>
             </ul>
-            <Button
-              onClick={() => navigate('/dashboard')}
-              className="w-full bg-nature-600 hover:bg-nature-700 text-white flex items-center justify-center gap-2 mt-2"
-            >
-              Ver Consulta de Precios
-              <ArrowRight className="h-4 w-4" />
+            <Button asChild className="w-full bg-nature-600 hover:bg-nature-700 text-white mt-2">
+              <a
+                href={DASHBOARD_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                Ver Consulta de Precios
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </Button>
           </div>
 

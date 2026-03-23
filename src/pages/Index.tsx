@@ -9,9 +9,17 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import CattleAuctionAnimation from '@/components/CattleAuctionAnimation';
 import { WHATSAPP_GENERAL } from '@/config/constants';
+import { usePageSeo } from '@/hooks/use-page-seo';
 
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  usePageSeo({
+    title: 'SUBADATOS | Inteligencia de Datos para la Ganaderia Colombiana',
+    description: 'Consultoria, analisis predictivo e IA aplicada al sector agropecuario. Optimiza tus decisiones con datos en tiempo real. Semillas de pasto certificadas y basculas ganaderas.',
+    canonical: 'https://www.subadatos.com/',
+    robots: 'index, follow',
+  });
 
   useEffect(() => {
     const animateOnScroll = () => {

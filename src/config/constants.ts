@@ -1,6 +1,7 @@
 export const WHATSAPP_NUMBER = "573144423197";
 export const DISPLAY_PHONE = "+57 314 4423197";
 export const EMAIL = "subadatos@gmail.com";
+export const DASHBOARD_URL = "https://subadatos-centralganadera.streamlit.app";
 
 const encode = (text: string) => encodeURIComponent(text);
 

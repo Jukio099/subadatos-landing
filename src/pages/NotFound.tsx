@@ -1,26 +1,20 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { usePageSeo } from '@/hooks/use-page-seo';
 
 const NotFound = () => {
   const location = useLocation();
 
-  useEffect(() => {
-    // Página 404 — no debe indexarse
-    const metaRobots = document.createElement('meta');
-    metaRobots.name = 'robots';
-    metaRobots.content = 'noindex, nofollow';
-    metaRobots.setAttribute('data-page', 'not-found');
-    document.head.appendChild(metaRobots);
+  usePageSeo({
+    title: 'Pagina no encontrada | SUBADATOS',
+    robots: 'noindex, nofollow',
+  });
 
+  useEffect(() => {
     console.error(
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );
-
-    return () => {
-      const tag = document.querySelector('meta[data-page="not-found"]');
-      if (tag) document.head.removeChild(tag);
-    };
   }, [location.pathname]);
 
   return (

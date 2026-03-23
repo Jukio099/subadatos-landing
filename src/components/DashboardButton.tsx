@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { BarChart3, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { DASHBOARD_URL } from '@/config/constants';
 
 const DashboardButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,14 +23,16 @@ const DashboardButton = () => {
         isVisible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
       )}
     >
-      <Link 
-        to="/dashboard"
+      <a
+        href={DASHBOARD_URL}
         className="flex items-center gap-2 bg-gradient-to-r from-secondary to-secondary-foreground text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all group animate-pulse hover:animate-none"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <BarChart3 className="h-5 w-5" />
         <span className="font-medium">Visualiza tus datos en tiempo real</span>
         <ChevronRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-      </Link>
+      </a>
     </div>
   );
 };
