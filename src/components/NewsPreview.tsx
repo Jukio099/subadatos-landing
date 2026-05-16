@@ -11,7 +11,7 @@ const NewsPreview = () => {
   if (articles.length === 0) return null;
 
   return (
-    <section className="section-padding bg-[#F8F8F5]">
+    <section className="section-padding bg-background">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
           <div className="max-w-2xl">

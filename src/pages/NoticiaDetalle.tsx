@@ -22,7 +22,7 @@ const NoticiaDetalle = () => {
 
   if (!article) {
     return (
-      <div className="min-h-screen bg-[#F8F8F5]">
+      <div className="min-h-screen bg-background">
         <Navbar />
         <main className="container-custom pt-32 pb-20 text-center">
           <Badge className="mb-4 bg-nature-100 text-nature-800">Radar Ganadero</Badge>
@@ -40,7 +40,7 @@ const NoticiaDetalle = () => {
   const related = latestNews.filter((item) => item.slug !== article.slug).slice(0, 2);
 
   return (
-    <div className="min-h-screen bg-[#F8F8F5] text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       <main className="pt-24">
@@ -68,7 +68,7 @@ const NoticiaDetalle = () => {
           <div className="container-custom py-10 md:py-14">
             <div className="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-8 items-start">
               <div className="space-y-8">
-                <Card className="border-0 shadow-lg">
+                <Card className="bg-white border-nature-100 shadow-lg">
                   <CardContent className="p-7 md:p-9">
                     <p className="text-nature-700 font-semibold uppercase tracking-[0.18em] text-sm mb-4">Claves rápidas</p>
                     <div className="grid gap-4">
@@ -82,7 +82,7 @@ const NoticiaDetalle = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="border-0 shadow-sm">
+                <Card className="bg-white border-nature-100 shadow-sm">
                   <CardContent className="p-7 md:p-10 prose prose-green max-w-none">
                     {article.sections.map((section) => (
                       <section key={section.heading} className="mb-10 last:mb-0">
@@ -164,7 +164,7 @@ const NoticiaDetalle = () => {
               <p className="text-white/65 uppercase tracking-[0.18em] text-sm">SubaDatos</p>
               <h2 className="text-3xl font-bold mt-2">Datos ganaderos para decidir mejor.</h2>
             </div>
-            <Button asChild className="bg-[#16A34A] hover:bg-[#13863f] text-white">
+            <Button asChild className="bg-nature-600 hover:bg-nature-700 text-white">
               <Link to="/">Conocer servicios <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>

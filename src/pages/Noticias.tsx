@@ -21,7 +21,7 @@ const Noticias = () => {
   const rest = latestNews.slice(1);
 
   return (
-    <div className="min-h-screen bg-[#F8F8F5] text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       <main className="pt-24">
