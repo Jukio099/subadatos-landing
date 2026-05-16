@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X, BarChart3 } from 'lucide-react';
+import { Menu, X, BarChart3, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
@@ -71,6 +71,18 @@ const Navbar = () => {
               Nuevo
             </Badge>
           </a>
+          <Link
+            to="/noticias"
+            className={cn(
+              "flex items-center transition-colors",
+              isScrolled ? "text-foreground hover:text-nature-600" : "text-white hover:text-nature-300"
+            )}
+            data-event="noticias_click"
+            data-source="navbar_desktop"
+          >
+            <Newspaper className="h-4 w-4 mr-1" />
+            <span>Noticias</span>
+          </Link>
           <button
             onClick={() => scrollToSection('inicio')}
             className={cn(
@@ -148,6 +160,16 @@ const Navbar = () => {
               </div>
               <Badge className="bg-secondary text-white text-xs">Nuevo</Badge>
             </a>
+            <Link
+              to="/noticias"
+              className="flex items-center text-foreground hover:text-nature-600 transition-colors py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+              data-event="noticias_click"
+              data-source="navbar_mobile"
+            >
+              <Newspaper className="h-4 w-4 mr-1" />
+              <span>Noticias</span>
+            </Link>
             <button
               onClick={() => scrollToSection('inicio')}
               className="text-foreground hover:text-nature-600 transition-colors py-2"

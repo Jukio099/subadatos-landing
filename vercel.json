@@ -9,7 +9,9 @@
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/checkout", "destination": "/index.html" },
-    { "source": "/pago-exitoso", "destination": "/index.html" }
+    { "source": "/pago-exitoso", "destination": "/index.html" },
+    { "source": "/noticias", "destination": "/index.html" },
+    { "source": "/noticias/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
