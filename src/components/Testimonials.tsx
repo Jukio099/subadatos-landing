@@ -4,38 +4,38 @@ import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 const testimonials = [
   {
     id: 1,
-    name: "Carlos Mendoza",
-    role: "Ganadero, Finca El Paraíso",
+    name: "Caso ganadero en Casanare",
+    role: "Productor bovino",
     content:
-      "Gracias al análisis de datos de SUBADATOS pudimos identificar los períodos de mayor rentabilidad en nuestras subastas. Mejoramos nuestras ganancias en un 30% en el primer semestre.",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      "Antes de vender revisamos referencias de subasta y ajustamos el precio esperado. La conversación por WhatsApp nos ayudó a negociar con más seguridad.",
+    initials: "CG",
     rating: 5,
   },
   {
     id: 2,
-    name: "María Rodríguez",
-    role: "Administradora, Hacienda Los Llanos",
+    name: "Caso finca de los Llanos",
+    role: "Administración de finca",
     content:
-      "Las semillas Brachiaria de SUBADATOS superaron nuestras expectativas. El porcentaje de germinación es superior al 90% y la asesoría técnica que nos brindan es invaluable.",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+      "Cotizamos semillas de pasto con información más clara para la zona. La asesoría fue rápida y aterrizada a las condiciones de la finca.",
+    initials: "FL",
     rating: 5,
   },
   {
     id: 3,
-    name: "Fernando Suárez",
-    role: "Propietario, Finca San José",
+    name: "Caso comprador en subasta",
+    role: "Comercializador ganadero",
     content:
-      "La consulta de precios de SUBADATOS nos permite decidir mejor en cada subasta. Ver los precios al instante nos da una ventaja enorme frente a los demás compradores.",
-    avatar: "https://randomuser.me/api/portraits/men/11.jpg",
-    rating: 4,
+      "La consulta de precios de SubaDatos nos dio una referencia antes de entrar a negociar. Tener datos recientes cambia totalmente la conversación.",
+    initials: "CS",
+    rating: 5,
   },
   {
     id: 4,
-    name: "Laura Quintero",
-    role: "Gerente, Agroindustrias del Oriente",
+    name: "Caso asesoría agropecuaria",
+    role: "Equipo técnico de finca",
     content:
-      "Contratamos la consultoría de datos y los resultados fueron inmediatos. El equipo de SUBADATOS entiende perfectamente las necesidades del sector agropecuario colombiano.",
-    avatar: "https://randomuser.me/api/portraits/women/29.jpg",
+      "Ordenamos la información de precios y pesos para tomar decisiones semanales. El valor estuvo en convertir datos dispersos en una recomendación concreta.",
+    initials: "AA",
     rating: 5,
   },
 ];
@@ -67,8 +67,8 @@ const Testimonials = () => {
           <h2 className="text-3xl font-bold mb-2 text-gradient">Lo que dicen nuestros clientes</h2>
           <div className="h-1 w-20 bg-earth-500 mx-auto mb-6 rounded-full"></div>
           <p className="text-gray-600">
-            Descubra por qué los ganaderos y agricultores de toda Colombia confían en SUBADATOS
-            para mejorar sus datos, pasturas y productividad.
+            Casos anónimos y referencias de uso: ganaderos y equipos agropecuarios usan SubaDatos
+            para llegar mejor preparados a sus decisiones de compra, venta y productividad.
           </p>
         </div>
 
@@ -81,12 +81,9 @@ const Testimonials = () => {
               >
                 <div className="flex justify-between items-start mb-6">
                   <div className="flex items-center">
-                    <img
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      className="w-14 h-14 rounded-full object-cover mr-4"
-                      loading="lazy"
-                    />
+                    <div className="w-14 h-14 rounded-full mr-4 bg-gradient-to-br from-nature-500 to-earth-500 text-white font-bold flex items-center justify-center shadow-sm">
+                      {testimonial.initials}
+                    </div>
                     <div>
                       <h4 className="font-semibold text-lg">{testimonial.name}</h4>
                       <p className="text-sm text-gray-600">{testimonial.role}</p>

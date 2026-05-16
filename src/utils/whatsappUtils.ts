@@ -1,24 +1,20 @@
-import { WHATSAPP_NUMBER } from '@/config/constants';
+import { WHATSAPP_CONSULTING, WHATSAPP_PRICES, WHATSAPP_SCALES, WHATSAPP_SEEDS } from '@/config/constants';
 
 /**
- * Genera un link de WhatsApp con mensaje prellenado según el producto.
+ * Genera un link de WhatsApp con mensaje prellenado según la intención del producto.
  */
 export const getWhatsappLink = (product: { id: number; name: string }) => {
-  let message = "";
+  if (product.id === 1) return WHATSAPP_CONSULTING;
+  if (product.name.includes("Brachiaria")) return WHATSAPP_SEEDS;
+  if (product.name.includes("Báscula")) return WHATSAPP_SCALES;
 
-  if (product.id === 1) {
-    message = encodeURIComponent(
-      "Hola, estoy interesado/a en sus servicios de análisis de datos a $100.000 COP la hora. ¿Me podrían dar más información?"
-    );
-  } else if (product.name.includes("Brachiaria")) {
-    message = encodeURIComponent(
-      `Hola, estoy interesado/a en el pasto ${product.name}. ¿Me podrían dar más información?`
-    );
-  } else {
-    message = encodeURIComponent(
-      `Hola, estoy interesado/a en ${product.name}. ¿Me podrían dar más información?`
-    );
-  }
+  return WHATSAPP_PRICES;
+};
 
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+export const getWhatsappEventName = (product: { id: number; name: string }) => {
+  if (product.id === 1) return 'whatsapp_consultoria';
+  if (product.name.includes("Brachiaria")) return 'whatsapp_semillas';
+  if (product.name.includes("Báscula")) return 'whatsapp_basculas';
+
+  return 'whatsapp_precios';
 };

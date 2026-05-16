@@ -13,11 +13,11 @@ export interface Product {
 export const productsData: Product[] = [
   {
     id: 1,
-    name: "Consultoría Datos Ganaderos",
+    name: "Asesoría en precios ganaderos",
     price: "$100.000/hora",
-    description: "Servicios de análisis de datos para aumentar la eficiencia y rentabilidad de su empresa.",
+    description: "Acompañamiento para interpretar precios de subasta, comparar categorías y decidir mejor cuándo vender o comprar ganado.",
     image: "/lovable-uploads/fb7b2fb0-41bf-4e3e-a48e-494045052acd.png",
-    features: ["Toma de decisiones basada en datos", "Visualización de datos", "Informes personalizados"],
+    features: ["Referencias por plaza y categoría", "Lectura de tendencias del mercado", "Recomendación accionable por WhatsApp"],
     iconName: "ChartLine",
     boldLink: "https://checkout.bold.co/payment/LNK_WIL80MQCBS"
   },

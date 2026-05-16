@@ -7,7 +7,7 @@ import Benefits from '@/components/Benefits';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import CattleAuctionAnimation from '@/components/CattleAuctionAnimation';
+import NeedsSection from '@/components/NeedsSection';
 import { WHATSAPP_GENERAL } from '@/config/constants';
 import { usePageSeo } from '@/hooks/use-page-seo';
 
@@ -15,8 +15,8 @@ const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   usePageSeo({
-    title: 'SUBADATOS | Inteligencia de Datos para la Ganaderia Colombiana',
-    description: 'Consultoria, analisis predictivo e IA aplicada al sector agropecuario. Optimiza tus decisiones con datos en tiempo real. Semillas de pasto certificadas y basculas ganaderas.',
+    title: 'SUBADATOS | Precios de ganado en subastas de Colombia',
+    description: 'Consulte precios de ganado en subastas colombianas antes de vender o negociar. Asesoría por WhatsApp, análisis de mercado ganadero, semillas de pasto y básculas.',
     canonical: 'https://www.subadatos.com/',
     robots: 'index, follow',
   });
@@ -41,26 +41,34 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleTrackedClick = (event: MouseEvent) => {
+      const target = event.target as Element | null;
+      const el = target?.closest<HTMLElement>('[data-event]');
+      if (!el) return;
+
+      const trackingWindow = window as typeof window & {
+        dataLayer?: Array<Record<string, unknown>>;
+      };
+
+      trackingWindow.dataLayer = trackingWindow.dataLayer || [];
+      trackingWindow.dataLayer.push({
+        event: el.dataset.event,
+        source: el.dataset.source || 'unknown',
+        href: el instanceof HTMLAnchorElement ? el.href : null,
+        page_path: window.location.pathname,
+      });
+    };
+
+    document.addEventListener('click', handleTrackedClick);
+    return () => document.removeEventListener('click', handleTrackedClick);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <Hero />
-
-      {/* Cattle Auction Animation Section — oculta en móvil (SVG ilegible < 768px) */}
-      <section className="hidden md:block section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
-            <h2 className="text-3xl font-bold mb-2 text-gradient">Inteligencia Ganadera en Acción</h2>
-            <div className="h-1 w-20 bg-nature-500 mx-auto mb-4 rounded-full"></div>
-            <p className="text-gray-600">Así es como la tecnología y los datos transforman las subastas ganaderas.</p>
-          </div>
-          <CattleAuctionAnimation />
-          <p className="text-center text-xs text-gray-400 mt-4 italic">
-            * Representación visual ilustrativa. Los datos mostrados son simulados con fines estéticos.
-          </p>
-        </div>
-      </section>
-
+      <NeedsSection />
       <Products />
       <About />
       <Benefits />
@@ -74,6 +82,8 @@ const Index = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"
+        data-event="whatsapp_general"
+        data-source="floating_button"
         className="fixed bottom-6 left-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-50 transition-all duration-300 flex items-center justify-center"
       >
         {/* WhatsApp icon SVG */}

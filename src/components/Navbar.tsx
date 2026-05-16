@@ -54,6 +54,8 @@ const Navbar = () => {
             className="relative flex items-center group"
             target="_blank"
             rel="noopener noreferrer"
+            data-event="consulta_precios_click"
+            data-source="navbar_desktop"
           >
             <div className={cn(
               "flex items-center transition-colors",
@@ -137,6 +139,8 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               target="_blank"
               rel="noopener noreferrer"
+              data-event="consulta_precios_click"
+              data-source="navbar_mobile"
             >
               <div className="flex items-center">
                 <BarChart3 className="h-4 w-4 mr-1" />

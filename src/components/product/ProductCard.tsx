@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import ProductIcon from './ProductIcon';
 import ProductFeatures from './ProductFeatures';
-import { getWhatsappLink } from '@/utils/whatsappUtils';
+import { getWhatsappEventName, getWhatsappLink } from '@/utils/whatsappUtils';
 import { Product } from '@/types/product';
 
 interface ProductCardProps {
@@ -15,6 +15,9 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const whatsappLink = getWhatsappLink(product);
+  const whatsappEvent = getWhatsappEventName(product);
+
   const handleCheckout = () => {
     // Data analysis product uses direct Bold link
     if (product.id === 1 && product.boldLink) {
@@ -23,7 +26,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
     }
 
     // For other products, just show WhatsApp message
-    const whatsappLink = getWhatsappLink(product);
     window.open(whatsappLink, '_blank');
   };
 
@@ -34,6 +36,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {/* Product Image */}
           <div className="relative w-full md:w-2/5 h-64 md:h-auto md:self-stretch overflow-hidden flex-shrink-0">
             <img
+              loading="lazy"
               src={product.image}
               alt={product.name}
               className="w-full h-full object-cover object-center"
@@ -74,10 +77,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </Button>
 
               <a
-                href={getWhatsappLink(product)}
+                href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1"
+                data-event={whatsappEvent}
+                data-source="product_card"
               >
                 <Button
                   variant="outline"

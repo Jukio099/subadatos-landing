@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ChevronDown, Phone } from 'lucide-react';
-import { WHATSAPP_GENERAL } from '@/config/constants';
+import { DASHBOARD_URL, WHATSAPP_PRICES } from '@/config/constants';
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -28,31 +28,48 @@ const Hero = () => {
             Precios de ganado · Subastas en Colombia · Toma mejores decisiones
           </span>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-            Mejora tus ganancias con <span className="text-nature-400">análisis de datos</span>
+            Conozca el precio del ganado antes de <span className="text-nature-400">vender en subasta</span>
           </h1>
           <p className="text-lg md:text-xl text-white/90 mb-6">
-            En SUBADATOS te mostramos los precios del ganado en las subastas de Colombia
-            para que vendas en el momento justo y ganes más.
+            SubaDatos analiza precios de subastas ganaderas en Colombia para ayudarle a negociar mejor,
+            escoger el momento de venta y tomar decisiones con datos.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <a href={WHATSAPP_GENERAL} target="_blank" rel="noopener noreferrer" className="inline-block">
+            <a
+              href={WHATSAPP_PRICES}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+              data-event="whatsapp_precios"
+              data-source="hero"
+            >
               <Button className="w-full bg-nature-600 hover:bg-nature-700 text-white text-base py-4 px-6 sm:text-lg sm:py-6 sm:px-8">
-                <Phone className="mr-2 h-5 w-5" /> Contactar por WhatsApp
+                <Phone className="mr-2 h-5 w-5" /> Consultar precios por WhatsApp
               </Button>
             </a>
-            <Button
-              variant="outline"
-              className="bg-transparent border-white text-white hover:bg-white/10 text-base py-4 px-6 sm:text-lg sm:py-6 sm:px-8"
-              onClick={() => scrollToSection('productos')}
+            <a
+              href={DASHBOARD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-event="consulta_precios_click"
+              data-source="hero"
+              className="inline-block"
             >
-              Ver Servicios
-            </Button>
+              <Button
+                variant="outline"
+                className="w-full bg-transparent border-white text-white hover:bg-white/10 text-base py-4 px-6 sm:text-lg sm:py-6 sm:px-8"
+              >
+                Ver consulta de precios
+              </Button>
+            </a>
           </div>
-          <div className="mt-8">
-            <div className="inline-flex items-center p-2 px-3 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-2"></span>
-              Servicios en toda Colombia
-            </div>
+          <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-2 text-white text-sm">
+            {['Atención por WhatsApp', 'Especializado en subastas ganaderas', 'Datos para compra y venta'].map(item => (
+              <div key={item} className="inline-flex items-center p-2 px-3 bg-white/10 backdrop-blur-sm rounded-full">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-2"></span>
+                {item}
+              </div>
+            ))}
           </div>
         </div>
       </div>
