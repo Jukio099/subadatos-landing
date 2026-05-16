@@ -3,13 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X, BarChart3, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { DASHBOARD_URL } from '@/config/constants';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,11 +23,21 @@ const Navbar = () => {
     };
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
+  const navigateToSection = (id: string) => {
+    setIsMobileMenuOpen(false);
+    if (location.pathname === '/') {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 350);
     }
   };
 
@@ -39,13 +51,13 @@ const Navbar = () => {
       )}
     >
       <div className="container-custom flex items-center justify-between">
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img
             src="/lovable-uploads/9569de5a-057e-4973-b16b-1def60885893.png"
             alt="SUBADATOS Logo"
             className="h-12 w-12 mr-3 rounded-full object-cover"
           />
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
@@ -84,7 +96,7 @@ const Navbar = () => {
             <span>Noticias</span>
           </Link>
           <button
-            onClick={() => scrollToSection('inicio')}
+            onClick={() => navigateToSection('inicio')}
             className={cn(
               "transition-colors",
               isScrolled ? "text-foreground hover:text-nature-600" : "text-white hover:text-nature-300"
@@ -93,7 +105,7 @@ const Navbar = () => {
             Inicio
           </button>
           <button
-            onClick={() => scrollToSection('nosotros')}
+            onClick={() => navigateToSection('nosotros')}
             className={cn(
               "transition-colors",
               isScrolled ? "text-foreground hover:text-nature-600" : "text-white hover:text-nature-300"
@@ -102,7 +114,7 @@ const Navbar = () => {
             Nosotros
           </button>
           <button
-            onClick={() => scrollToSection('productos')}
+            onClick={() => navigateToSection('productos')}
             className={cn(
               "transition-colors",
               isScrolled ? "text-foreground hover:text-nature-600" : "text-white hover:text-nature-300"
@@ -111,7 +123,7 @@ const Navbar = () => {
             Productos
           </button>
           <button
-            onClick={() => scrollToSection('beneficios')}
+            onClick={() => navigateToSection('beneficios')}
             className={cn(
               "transition-colors",
               isScrolled ? "text-foreground hover:text-nature-600" : "text-white hover:text-nature-300"
@@ -122,7 +134,7 @@ const Navbar = () => {
           <Button
             variant="default"
             className="bg-nature-600 hover:bg-nature-700 text-white"
-            onClick={() => scrollToSection('contacto')}
+            onClick={() => navigateToSection('contacto')}
           >
             Contáctanos
           </Button>
@@ -171,25 +183,25 @@ const Navbar = () => {
               <span>Noticias</span>
             </Link>
             <button
-              onClick={() => scrollToSection('inicio')}
+              onClick={() => navigateToSection('inicio')}
               className="text-foreground hover:text-nature-600 transition-colors py-2"
             >
               Inicio
             </button>
             <button
-              onClick={() => scrollToSection('nosotros')}
+              onClick={() => navigateToSection('nosotros')}
               className="text-foreground hover:text-nature-600 transition-colors py-2"
             >
               Nosotros
             </button>
             <button
-              onClick={() => scrollToSection('productos')}
+              onClick={() => navigateToSection('productos')}
               className="text-foreground hover:text-nature-600 transition-colors py-2"
             >
               Productos
             </button>
             <button
-              onClick={() => scrollToSection('beneficios')}
+              onClick={() => navigateToSection('beneficios')}
               className="text-foreground hover:text-nature-600 transition-colors py-2"
             >
               Beneficios
@@ -197,7 +209,7 @@ const Navbar = () => {
             <Button
               variant="default"
               className="bg-nature-600 hover:bg-nature-700 text-white w-full"
-              onClick={() => scrollToSection('contacto')}
+              onClick={() => navigateToSection('contacto')}
             >
               Contáctanos
             </Button>

@@ -1,11 +1,21 @@
 import { Phone, Mail, MapPin, ArrowRight, Facebook, Instagram } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { WHATSAPP_GENERAL, DISPLAY_PHONE, EMAIL } from '@/config/constants';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const navigateToSection = (id: string) => {
+    if (location.pathname === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 350);
+    }
   };
 
   return (
@@ -62,7 +72,7 @@ const Footer = () => {
               ].map(({ label, id }) => (
                 <li key={id}>
                   <button
-                    onClick={() => scrollToSection(id)}
+                    onClick={() => navigateToSection(id)}
                     className="text-gray-300 hover:text-white flex items-center"
                   >
                     <ArrowRight className="h-4 w-4 mr-2" /> {label}
