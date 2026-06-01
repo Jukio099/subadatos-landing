@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { formatArticleDate, latestNews } from '@/content/noticias';
 import { ArrowRight, Newspaper, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { WordReveal } from './WordReveal';
 
 const categoryColors: Record<string, string> = {
   'Normatividad': 'from-suba-purple-600 to-suba-purple-700',
@@ -23,10 +24,14 @@ const NewsPreview = () => {
   if (articles.length === 0) return null;
 
   return (
-    <section className="section-padding bg-suba-dark-200/50 relative overflow-hidden">
+    <section
+      className="section-padding relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 100%)' }}
+    >
       {/* Background grid */}
       <div className="absolute inset-0 bg-grid-light opacity-20" />
-      
+      <div className="absolute top-1/3 -right-32 w-96 h-96 bg-suba-purple-700/8 rounded-full blur-[120px] pointer-events-none" />
+
       <div className="container-custom relative z-10">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-12">
           <div className="max-w-2xl">
@@ -34,8 +39,8 @@ const NewsPreview = () => {
               <Sparkles className="h-4 w-4" /> Radar Ganadero
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Noticias que{' '}
-              <span className="text-gradient">sí le sirven al ganadero</span>
+              <WordReveal>Noticias que</WordReveal>{' '}
+              <WordReveal className="text-gradient" delay={250}>sí le sirven al ganadero</WordReveal>
             </h2>
             <p className="text-white/50 mt-4 text-sm md:text-base">
               Análisis cortos para entender trámites, tecnología, mercado y señales que pueden afectar decisiones de compra, venta o movilización.
@@ -52,7 +57,7 @@ const NewsPreview = () => {
           {articles.map((article) => (
             <Card
               key={article.slug}
-              className="group overflow-hidden bg-white/5 backdrop-blur-sm border border-white/5 hover:border-suba-purple-500/30 transition-all duration-500 rounded-2xl hover-lift"
+              className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border border-white/5 hover:border-suba-purple-500/40 transition-all duration-500 rounded-2xl hover-lift border-shimmer"
             >
               <div className={`h-28 bg-gradient-to-br ${article.coverGradient || categoryColors[article.category] || 'from-suba-purple-600 to-suba-green-500'} relative overflow-hidden`}>
                 <div className="absolute inset-0 bg-black/20" />

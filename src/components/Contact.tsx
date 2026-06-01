@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Phone, Mail, MapPin, Calendar, Sparkles } from 'lucide-react';
 import { WHATSAPP_GENERAL, DISPLAY_PHONE, EMAIL } from '@/config/constants';
+import { WordReveal } from './WordReveal';
 
 declare global {
   interface Window {
@@ -59,19 +60,20 @@ const Contact = () => {
   return (
     <section id="contacto" className="relative overflow-hidden">
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-suba-dark-300 via-suba-purple-950/50 to-suba-dark-300" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#1a0a2e] to-[#0a0a0f]" />
       <div className="absolute inset-0 bg-grid-light opacity-30" />
-      
-      {/* Glow effects */}
-      <div className="hero-glow bg-suba-purple-700 w-[400px] h-[400px] -top-32 left-1/3 animate-float-slow" />
-      <div className="hero-glow bg-suba-green-600/30 w-[300px] h-[300px] bottom-0 right-0 animate-float-slow" style={{ animationDelay: '2s' }} />
 
-      <div className="container-custom relative z-10 py-16 md:py-24">
+      {/* Glow effects */}
+      <div className="hero-glow bg-suba-purple-700 w-[400px] h-[400px] -top-32 left-1/3 animate-blob-float" />
+      <div className="hero-glow bg-suba-green-600/30 w-[300px] h-[300px] bottom-0 right-0 animate-blob-float" style={{ animationDelay: '2s' }} />
+
+      <div className="container-custom relative z-10 py-14 md:py-20">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Convierte{' '}
-            <span className="text-gradient">datos ganaderos</span>
-            {' '}en decisiones rentables
+            <WordReveal>Convierte</WordReveal>{' '}
+            <WordReveal className="text-gradient" delay={250}>datos ganaderos</WordReveal>
+            {' '}
+            <WordReveal delay={500}>en decisiones rentables</WordReveal>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-suba-purple-500 to-suba-green-500 mx-auto mb-6 rounded-full" />
           <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto">

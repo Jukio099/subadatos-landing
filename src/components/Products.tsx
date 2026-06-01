@@ -3,6 +3,7 @@ import { Phone, Sparkles, ArrowRight } from 'lucide-react';
 import ProductCard from './product/ProductCard';
 import { productsData } from '@/types/product';
 import { WHATSAPP_DATA_SERVICES } from '@/config/constants';
+import { WordReveal } from './WordReveal';
 
 const Products = () => {
   return (
@@ -13,6 +14,7 @@ const Products = () => {
     >
       <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
       <div className="absolute top-1/4 -right-32 w-96 h-96 bg-suba-purple-700/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 -left-20 w-72 h-72 bg-suba-green-600/8 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-14 animate-on-scroll">
@@ -20,7 +22,8 @@ const Products = () => {
             <Sparkles className="h-3.5 w-3.5" /> Servicios y productos
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
-            Para <span className="text-gradient">vender mejor</span>
+            <WordReveal>Para</WordReveal>{' '}
+            <WordReveal className="text-gradient" delay={250}>vender mejor</WordReveal>
           </h2>
           <div className="mx-auto h-1 w-24 rounded-full bar-shimmer mb-6" />
           <p className="text-white/60 text-base sm:text-lg leading-relaxed">

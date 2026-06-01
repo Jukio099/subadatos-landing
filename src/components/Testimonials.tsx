@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote, Sparkles } from 'lucide-react';
+import { WordReveal } from './WordReveal';
 
 const testimonials = [
   {
@@ -95,7 +96,8 @@ const Testimonials = () => {
             <Sparkles className="h-3.5 w-3.5" /> Testimonios
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
-            Lo que dicen <span className="text-gradient-gold">nuestros clientes</span>
+            <WordReveal>Lo que dicen</WordReveal>{' '}
+            <WordReveal className="text-gradient-gold" delay={300}>nuestros clientes</WordReveal>
           </h2>
           <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-suba-gold-500 to-suba-gold-400 mb-6" />
           <p className="text-white/60 text-base sm:text-lg leading-relaxed">

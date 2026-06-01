@@ -2,6 +2,7 @@ import { ArrowRight, Database, ChartBar, Leaf, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DASHBOARD_URL } from '@/config/constants';
 import { useCountUp } from '@/hooks/use-count-up';
+import { WordReveal } from './WordReveal';
 
 const Benefits = () => {
   const dataCount = useCountUp({ end: 1, suffix: 'M+', duration: 1800 });
@@ -12,7 +13,7 @@ const Benefits = () => {
     <section
       id="beneficios"
       className="section-padding relative overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #0a0a0f 0%, #111118 100%)' }}
+      style={{ background: 'linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 100%)' }}
     >
       {/* Decorative blobs */}
       <div className="absolute -top-32 -right-32 w-96 h-96 bg-suba-purple-700/15 rounded-full blur-[100px] pointer-events-none" />
@@ -25,7 +26,8 @@ const Benefits = () => {
             <Sparkles className="h-3.5 w-3.5" /> Beneficios
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
-            ¿Por qué <span className="text-gradient">elegirnos</span>?
+            <WordReveal>¿Por qué</WordReveal>{' '}
+            <WordReveal className="text-gradient" delay={300}>elegirnos</WordReveal>?
           </h2>
           <div className="mx-auto h-1 w-24 rounded-full bar-shimmer mb-6" />
           <p className="text-white/60 text-base sm:text-lg leading-relaxed">
@@ -36,10 +38,10 @@ const Benefits = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
           {/* Benefit 1 */}
-          <div className="group relative glass rounded-2xl p-7 border-t-2 border-suba-purple-500 hover:border-suba-purple-400 hover-lift overflow-hidden">
+          <div className="group relative glass rounded-2xl p-7 border-t-2 border-suba-purple-500 hover:border-suba-purple-400 hover-lift overflow-hidden border-shimmer">
             <div className="absolute -top-16 -right-16 w-40 h-40 bg-suba-purple-600/0 group-hover:bg-suba-purple-600/20 rounded-full blur-3xl transition-all duration-700" />
             <div className="relative">
-              <div className="w-14 h-14 rounded-2xl bg-suba-purple-700/30 border border-suba-purple-500/30 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+              <div className="w-14 h-14 rounded-2xl bg-suba-purple-700/30 border border-suba-purple-500/30 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 icon-glow">
                 <Database className="h-7 w-7 text-suba-purple-300" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">Análisis de Datos Avanzado</h3>
@@ -55,7 +57,7 @@ const Benefits = () => {
                   </li>
                 ))}
               </ul>
-              <Button asChild className="w-full bg-suba-purple-700 hover:bg-suba-purple-600 text-white rounded-full py-5 border border-suba-purple-500/40 group/btn">
+              <Button asChild className="w-full btn-shine bg-suba-purple-700 hover:bg-suba-purple-600 text-white rounded-full py-5 border border-suba-purple-500/40 group/btn">
                 <a
                   href={DASHBOARD_URL}
                   target="_blank"
@@ -70,10 +72,10 @@ const Benefits = () => {
           </div>
 
           {/* Benefit 2 */}
-          <div className="group relative glass rounded-2xl p-7 border-t-2 border-suba-green-500 hover:border-suba-green-400 hover-lift overflow-hidden">
+          <div className="group relative glass rounded-2xl p-7 border-t-2 border-suba-green-500 hover:border-suba-green-400 hover-lift overflow-hidden border-shimmer">
             <div className="absolute -top-16 -right-16 w-40 h-40 bg-suba-green-600/0 group-hover:bg-suba-green-600/20 rounded-full blur-3xl transition-all duration-700" />
             <div className="relative">
-              <div className="w-14 h-14 rounded-2xl bg-suba-green-700/30 border border-suba-green-500/30 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+              <div className="w-14 h-14 rounded-2xl bg-suba-green-700/30 border border-suba-green-500/30 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 icon-glow">
                 <ChartBar className="h-7 w-7 text-suba-green-300" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">Asesoría Técnica Especializada</h3>
@@ -93,10 +95,10 @@ const Benefits = () => {
           </div>
 
           {/* Benefit 3 */}
-          <div className="group relative glass rounded-2xl p-7 border-t-2 border-suba-gold-500 hover:border-suba-gold-400 hover-lift overflow-hidden">
+          <div className="group relative glass rounded-2xl p-7 border-t-2 border-suba-gold-500 hover:border-suba-gold-400 hover-lift overflow-hidden border-shimmer">
             <div className="absolute -top-16 -right-16 w-40 h-40 bg-suba-gold-500/0 group-hover:bg-suba-gold-500/15 rounded-full blur-3xl transition-all duration-700" />
             <div className="relative">
-              <div className="w-14 h-14 rounded-2xl bg-suba-gold-500/20 border border-suba-gold-500/30 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+              <div className="w-14 h-14 rounded-2xl bg-suba-gold-500/20 border border-suba-gold-500/30 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 icon-glow">
                 <Leaf className="h-7 w-7 text-suba-gold-400" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">Productos Agropecuarios de Calidad</h3>

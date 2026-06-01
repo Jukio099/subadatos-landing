@@ -1,5 +1,6 @@
 import { CheckCircle, TrendingUp, MapPin, Database, Award } from 'lucide-react';
 import { useCountUp } from '@/hooks/use-count-up';
+import { WordReveal, BlurReveal } from './WordReveal';
 
 const About = () => {
   const yearsCount = useCountUp({ end: 2, suffix: '+', duration: 1800 });
@@ -14,10 +15,11 @@ const About = () => {
     >
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       <div className="absolute top-1/2 -left-32 w-72 h-72 bg-suba-purple-700/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 -right-20 w-72 h-72 bg-suba-green-600/8 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="animate-on-scroll order-2 md:order-1">
+          <BlurReveal className="order-2 md:order-1">
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-br from-suba-purple-600/40 to-suba-green-500/30 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative glass rounded-2xl overflow-hidden border border-white/5">
@@ -29,8 +31,7 @@ const About = () => {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-suba-dark-300/80 via-suba-dark-300/30 to-transparent" />
-                  {/* Floating data overlay */}
-                  <div className="absolute top-4 right-4 glass-light rounded-lg p-3 border border-suba-purple-500/30 animate-float">
+                  <div className="absolute top-4 right-4 glass-light rounded-lg p-3 border border-suba-purple-500/30 animate-float-smooth">
                     <div className="flex items-center gap-2">
                       <Database className="h-3.5 w-3.5 text-suba-purple-300" />
                       <span className="text-xs text-white font-mono">LIVE FEED</span>
@@ -51,8 +52,7 @@ const About = () => {
                 </div>
               </div>
 
-              {/* Floating badge */}
-              <div className="absolute -bottom-6 -right-2 md:-right-6 hidden md:flex items-center gap-3 glass-strong rounded-xl p-4 border border-suba-purple-500/30 shadow-2xl animate-float" style={{ animationDelay: '1s' }}>
+              <div className="absolute -bottom-6 -right-2 md:-right-6 hidden md:flex items-center gap-3 glass-strong rounded-xl p-4 border border-suba-purple-500/30 shadow-2xl animate-float-smooth" style={{ animationDelay: '1s' }}>
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-suba-purple-600 to-suba-green-500 flex items-center justify-center">
                   <Award className="h-6 w-6 text-white" />
                 </div>
@@ -62,15 +62,17 @@ const About = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </BlurReveal>
 
-          <div className="animate-on-scroll order-1 md:order-2">
+          <BlurReveal className="order-1 md:order-2" delay={120}>
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-suba-purple-300 bg-suba-purple-500/10 border border-suba-purple-500/20 px-4 py-1.5 rounded-full mb-4 uppercase tracking-[0.15em]">
               Quiénes Somos
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-white leading-tight">
-              Inteligencia ganadera <br />
-              <span className="text-gradient">hecha en Colombia</span>
+              <WordReveal className="block">Inteligencia ganadera</WordReveal>
+              <WordReveal className="block text-gradient" delay={250}>
+                hecha en Colombia
+              </WordReveal>
             </h2>
             <div className="h-1 w-20 rounded-full bar-shimmer mb-6" />
             <p className="text-white/70 mb-5 leading-relaxed">
@@ -97,7 +99,7 @@ const About = () => {
                   key={item.title}
                   className="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors group"
                 >
-                  <div className="flex-shrink-0 w-7 h-7 rounded-full bg-suba-purple-500/20 border border-suba-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="flex-shrink-0 w-7 h-7 rounded-full bg-suba-purple-500/20 border border-suba-purple-500/30 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform">
                     <CheckCircle className="h-4 w-4 text-suba-purple-300" />
                   </div>
                   <div>
@@ -108,7 +110,6 @@ const About = () => {
               ))}
             </div>
 
-            {/* Stats row */}
             <div className="grid grid-cols-3 gap-3 p-4 glass-light rounded-2xl border border-white/5">
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1 mb-1">
@@ -138,7 +139,7 @@ const About = () => {
                 <p className="text-[10px] uppercase tracking-wider text-white/50">Datos</p>
               </div>
             </div>
-          </div>
+          </BlurReveal>
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ import {
   WHATSAPP_SEEDS,
   WHATSAPP_SCALES,
 } from '@/config/constants';
+import { WordReveal } from './WordReveal';
 
 const needs = [
   {
@@ -93,7 +94,8 @@ const NeedsSection = () => {
             <Sparkles className="h-3.5 w-3.5" /> Empiece por su necesidad
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
-            ¿Qué necesita <span className="text-gradient">hoy</span>?
+            <WordReveal>¿Qué necesita</WordReveal>{' '}
+            <WordReveal className="text-gradient" delay={300}>hoy</WordReveal>?
           </h2>
           <div className="mx-auto h-1 w-24 rounded-full bar-shimmer mb-6" />
           <p className="text-white/60 text-base sm:text-lg leading-relaxed">
