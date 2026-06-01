@@ -12,8 +12,6 @@ const Hero = () => {
   const lotesCount = useCountUp({ end: 1, decimals: 0, duration: 1800, suffix: 'M+' });
   const plazasCount = useCountUp({ end: 20, decimals: 0, duration: 1800, suffix: '+' });
   const datosCount = useCountUp({ end: 1, decimals: 0, duration: 1800, suffix: 'M+' });
-  const plazasRef = useRef<HTMLSpanElement>(null);
-  const datosRef = useRef<HTMLSpanElement>(null);
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden bg-suba-dark-300">
@@ -164,17 +162,17 @@ const Hero = () => {
           {/* Stats row */}
           <div className="mt-14 grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl mx-auto stagger visible">
             {[
-              { value: lotesCount, label: 'Lotes analizados', icon: TrendingUp, color: 'text-suba-purple-300' },
-              { value: plazasCount, label: 'Plazas', icon: Sparkles, color: 'text-suba-gold-400' },
-              { value: datosCount, label: 'Datos', icon: BarChart3, color: 'text-suba-green-400' },
-            ].map(({ value, label, icon: Icon, color }) => (
+              { ref: lotesCount.ref, value: lotesCount.value, label: 'Lotes analizados', icon: TrendingUp, color: 'text-suba-purple-300' },
+              { ref: plazasCount.ref, value: plazasCount.value, label: 'Plazas', icon: Sparkles, color: 'text-suba-gold-400' },
+              { ref: datosCount.ref, value: datosCount.value, label: 'Datos', icon: BarChart3, color: 'text-suba-green-400' },
+            ].map(({ ref, value, label, icon: Icon, color }) => (
               <div
                 key={label}
                 className="glass-light rounded-2xl px-3 py-4 sm:px-5 sm:py-5 border border-white/5 hover:border-suba-purple-500/30 transition-colors group"
               >
                 <div className="flex items-center justify-center gap-1.5 mb-1.5">
                   <Icon className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${color} group-hover:scale-110 transition-transform`} />
-                  <span className={`text-xl sm:text-2xl md:text-3xl font-bold font-display ${color}`}>
+                  <span ref={ref} className={`text-xl sm:text-2xl md:text-3xl font-bold font-display ${color}`}>
                     {value}
                   </span>
                 </div>
