@@ -7,15 +7,16 @@ interface ProductIconProps {
 }
 
 const ProductIcon = ({ iconName }: ProductIconProps) => {
+  const className = "h-6 w-6 text-suba-purple-300";
   switch (iconName) {
     case "ChartLine":
-      return <ChartLine className="h-8 w-8 text-nature-600" />;
+      return <ChartLine className={className} />;
     case "Leaf":
-      return <Leaf className="h-8 w-8 text-nature-600" />;
+      return <Leaf className={className} />;
     case "Scale":
-      return <Scale className="h-8 w-8 text-nature-600" />;
+      return <Scale className={className} />;
     default:
-      return <ChartLine className="h-8 w-8 text-nature-600" />;
+      return <ChartLine className={className} />;
   }
 };
 

@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, ArrowRight, Facebook, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowRight, Facebook, Instagram, Sparkles } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { WHATSAPP_GENERAL, DISPLAY_PHONE, EMAIL } from '@/config/constants';
 
@@ -19,49 +19,58 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-nature-900 text-white pt-10 md:pt-16 pb-6 md:pb-8">
-      <div className="container-custom">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {/* Column 1: About */}
-          <div>
-            <div className="flex items-center mb-6">
-              <img
-                src="/lovable-uploads/9569de5a-057e-4973-b16b-1def60885893.png"
-                alt="SUBADATOS Logo"
-                className="h-16 w-16 mr-3 rounded-full object-cover"
-                loading="lazy"
-              />
+    <footer className="bg-[#08080f] text-white border-t border-white/5">
+      <div className="container-custom pt-14 pb-6 md:pt-16 md:pb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          {/* Column 1: Brand */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center mb-5 group">
+              <div className="relative">
+                <div className="absolute inset-0 bg-suba-purple-600/30 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <img
+                  src="/lovable-uploads/9569de5a-057e-4973-b16b-1def60885893.png"
+                  alt="SUBADATOS Logo"
+                  className="h-14 w-14 rounded-full object-cover ring-2 ring-suba-purple-500/30 group-hover:ring-suba-purple-400 group-hover:rotate-[8deg] transition-all duration-500 relative"
+                  loading="lazy"
+                />
+              </div>
+              <div className="ml-3">
+                <span className="text-white font-display font-bold text-lg tracking-tight">SUBADATOS</span>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-suba-purple-300/70">Inteligencia Ganadera</p>
+              </div>
             </div>
-            <p className="text-gray-300 mb-6">
-              Ofrecemos los mejores servicios de análisis de datos para su empresa,
-              con asesoría técnica especializada y garantía de calidad.
+            <p className="text-white/50 text-sm leading-relaxed mb-6">
+              Datos, análisis e inteligencia artificial para transformar la ganadería colombiana. 
+              Precios de subasta, tendencias de mercado y decisiones basadas en datos.
             </p>
-            {/* Agrega las URLs reales cuando tengas redes sociales activas */}
-            <div className="flex space-x-4">
+            <div className="flex space-x-3">
               <a
                 href="https://www.facebook.com/p/Subadatos-61550126366954/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook de SUBADATOS"
-                className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
+                className="w-10 h-10 rounded-xl bg-white/5 hover:bg-suba-purple-600/30 border border-white/10 hover:border-suba-purple-500/40 flex items-center justify-center transition-all duration-300 group"
               >
-                <Facebook className="h-5 w-5" />
+                <Facebook className="h-4 w-4 text-white/60 group-hover:text-suba-purple-300 transition-colors" />
               </a>
               <a
                 href="https://www.instagram.com/subadatos/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram de SUBADATOS"
-                className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
+                className="w-10 h-10 rounded-xl bg-white/5 hover:bg-suba-purple-600/30 border border-white/10 hover:border-suba-purple-500/40 flex items-center justify-center transition-all duration-300 group"
               >
-                <Instagram className="h-5 w-5" />
+                <Instagram className="h-4 w-4 text-white/60 group-hover:text-suba-purple-300 transition-colors" />
               </a>
             </div>
           </div>
 
           {/* Column 2: Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-6 border-b border-nature-700 pb-2">Enlaces rápidos</h3>
+            <h3 className="text-white font-display font-semibold text-sm uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+              <span className="w-6 h-px bg-suba-purple-500" />
+              Enlaces
+            </h3>
             <ul className="space-y-3">
               {[
                 { label: 'Inicio', id: 'inicio' },
@@ -73,47 +82,75 @@ const Footer = () => {
                 <li key={id}>
                   <button
                     onClick={() => navigateToSection(id)}
-                    className="text-gray-300 hover:text-white flex items-center"
+                    className="text-white/50 hover:text-white flex items-center gap-2 text-sm transition-colors group"
                   >
-                    <ArrowRight className="h-4 w-4 mr-2" /> {label}
+                    <ArrowRight className="h-3 w-3 text-suba-purple-500/0 group-hover:text-suba-purple-400 transition-all duration-300 group-hover:translate-x-0.5" />
+                    {label}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Contact */}
+          {/* Column 3: Services */}
           <div>
-            <h3 className="text-lg font-bold mb-6 border-b border-nature-700 pb-2">Contáctanos</h3>
+            <h3 className="text-white font-display font-semibold text-sm uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+              <span className="w-6 h-px bg-suba-green-500" />
+              Servicios
+            </h3>
+            <ul className="space-y-3">
+              {[
+                'Consulta de Precios',
+                'Asesoría Ganadera',
+                'Dashboards',
+                'Boletines de Mercado',
+                'Bases de Datos',
+              ].map((service) => (
+                <li key={service}>
+                  <span className="text-white/50 text-sm flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-suba-green-500/60" />
+                    {service}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact */}
+          <div>
+            <h3 className="text-white font-display font-semibold text-sm uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+              <span className="w-6 h-px bg-suba-gold-500" />
+              Contacto
+            </h3>
             <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 mr-3 text-earth-400 mt-1" />
-                <span className="text-gray-300">Colombia</span>
+              <li className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-suba-purple-400 mt-0.5 shrink-0" />
+                <span className="text-white/50 text-sm">Colombia</span>
               </li>
-              <li className="flex items-start">
-                <Phone className="h-5 w-5 mr-3 text-earth-400 mt-1" />
+              <li className="flex items-start gap-3">
+                <Phone className="h-4 w-4 text-suba-green-400 mt-0.5 shrink-0" />
                 <div>
-                  <span className="text-gray-300 block">{DISPLAY_PHONE}</span>
+                  <span className="text-white/50 text-sm block">{DISPLAY_PHONE}</span>
                   <a
                     href={WHATSAPP_GENERAL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-earth-400 hover:text-earth-300 text-sm"
+                    className="text-suba-green-400 hover:text-suba-green-300 text-sm transition-colors"
                   >
                     Contactar por WhatsApp
                   </a>
                 </div>
               </li>
-              <li className="flex items-center">
-                <Mail className="h-5 w-5 mr-3 text-earth-400" />
-                <a href={`mailto:${EMAIL}`} className="text-gray-300 hover:text-white">{EMAIL}</a>
+              <li className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-suba-gold-400 shrink-0" />
+                <a href={`mailto:${EMAIL}`} className="text-white/50 hover:text-white text-sm transition-colors">{EMAIL}</a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-nature-800 pt-8 mt-8 text-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-white/5 pt-8 mt-8 text-center">
+          <p className="text-white/30 text-xs">
             &copy; {currentYear} SUBADATOS. Todos los derechos reservados.
           </p>
         </div>
