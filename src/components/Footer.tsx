@@ -28,7 +28,7 @@ const Footer = () => {
               <div className="relative">
                 <div className="absolute inset-0 bg-suba-purple-600/30 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <img
-                  src="/lovable-uploads/9569de5a-057e-4973-b16b-1def60885893.png"
+                  src="/lovable-uploads/9569de5a-057e-4973-b16b-1def60885893.webp"
                   alt="SUBADATOS Logo"
                   className="h-14 w-14 rounded-full object-cover ring-2 ring-suba-purple-500/30 group-hover:ring-suba-purple-400 group-hover:rotate-[8deg] transition-all duration-500 relative"
                   loading="lazy"

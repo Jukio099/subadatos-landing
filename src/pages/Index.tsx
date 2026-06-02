@@ -23,23 +23,55 @@ const Index = () => {
   });
 
   useEffect(() => {
-    const animateOnScroll = () => {
+    // Use IntersectionObserver for reliable scroll-reveal
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            entry.target.classList.remove('animate-hidden');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    // Initial setup: mark everything visible by default, then hide what's below fold
+    const setupAnimation = () => {
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          el.classList.add('visible');
+        } else {
+          el.classList.add('animate-hidden');
+          observer.observe(el);
+        }
+      });
+
+      document.querySelectorAll('.stagger').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
           el.classList.add('visible');
         }
       });
     };
 
+    // Run on mount and after a short delay for lazy-loaded content
+    setupAnimation();
+    const timeoutId = setTimeout(setupAnimation, 300);
+
     const handleScroll = () => {
-      animateOnScroll();
       setShowScrollTop(window.scrollY > 400);
     };
 
     window.addEventListener('scroll', handleScroll);
-    setTimeout(animateOnScroll, 100);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   useEffect(() => {
