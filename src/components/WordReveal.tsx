@@ -44,7 +44,14 @@ export const WordReveal = ({
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Safety fallback: force visible after 3s even if observer never fires
+    const fallback = setTimeout(() => setVisible(true), 3000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
   }, [triggerOnce, threshold]);
 
   const tokens = splitBy === 'word' ? children.split(' ') : children.split('');
@@ -99,7 +106,14 @@ export const BlurReveal = ({
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Safety fallback: force visible after 3s even if observer never fires
+    const fallback = setTimeout(() => setVisible(true), 3000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
   }, [threshold]);
 
   return (
