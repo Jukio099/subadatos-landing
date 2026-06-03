@@ -23,59 +23,20 @@ const Index = () => {
   });
 
   useEffect(() => {
-    // Use IntersectionObserver for reliable scroll-reveal
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            entry.target.classList.remove('animate-hidden');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    // Initial setup: mark everything visible by default, then hide what's below fold
+    // Simple approach: add 'visible' class to all animated elements after mount
+    // This ensures everything is visible, animations are just progressive enhancement
     const setupAnimation = () => {
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
-          el.classList.add('visible');
-        } else {
-          el.classList.add('animate-hidden');
-          observer.observe(el);
-        }
+        el.classList.add('visible');
       });
-
       document.querySelectorAll('.stagger').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
-          el.classList.add('visible');
-        } else {
-          observer.observe(el);
-        }
+        el.classList.add('visible');
       });
     };
 
-    // Run on mount and after a short delay for lazy-loaded content
+    // Run immediately and after a short delay for lazy-loaded content
     setupAnimation();
-    const timeoutId = setTimeout(setupAnimation, 300);
-
-    // Safety fallback: force all animated elements visible after 3s
-    // This prevents black/hidden sections if the observer doesn't fire
-    const safetyTimeout = setTimeout(() => {
-      document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        el.classList.add('visible');
-        el.classList.remove('animate-hidden');
-      });
-      document.querySelectorAll('.stagger').forEach(el => {
-        if (!el.classList.contains('visible')) {
-          el.classList.add('visible');
-        }
-      });
-    }, 3000);
+    const timeoutId = setTimeout(setupAnimation, 100);
 
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
@@ -84,10 +45,8 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
 
     return () => {
-      observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(timeoutId);
-      clearTimeout(safetyTimeout);
     };
   }, []);
 
