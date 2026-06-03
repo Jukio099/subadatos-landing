@@ -53,6 +53,8 @@ const Index = () => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight * 0.85) {
           el.classList.add('visible');
+        } else {
+          observer.observe(el);
         }
       });
     };
@@ -60,6 +62,16 @@ const Index = () => {
     // Run on mount and after a short delay for lazy-loaded content
     setupAnimation();
     const timeoutId = setTimeout(setupAnimation, 300);
+
+    // Safety fallback: force all stagger elements visible after 3s
+    // This prevents black/hidden sections if the observer doesn't fire
+    const safetyTimeout = setTimeout(() => {
+      document.querySelectorAll('.stagger').forEach(el => {
+        if (!el.classList.contains('visible')) {
+          el.classList.add('visible');
+        }
+      });
+    }, 3000);
 
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
@@ -71,6 +83,7 @@ const Index = () => {
       observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(timeoutId);
+      clearTimeout(safetyTimeout);
     };
   }, []);
 
