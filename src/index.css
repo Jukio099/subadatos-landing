@@ -387,7 +387,7 @@
     opacity: 1;
   }
 
-  /* Word-by-word reveal for titles */
+  /* Word-by-word reveal for titles - visible by default */
   .word-reveal .word {
     display: inline-block;
     overflow: hidden;
@@ -395,7 +395,7 @@
   }
   .word-reveal .word > span {
     display: inline-block;
-    transform: translateY(105%);
+    transform: translateY(0);
     transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .word-reveal.in .word > span {
@@ -584,10 +584,10 @@
     opacity: 0.9;
   }
 
-  /* Reveal on view utility (used by IntersectionObserver logic in Index) */
+  /* Reveal on view utility - visible by default */
   .reveal {
-    opacity: 0;
-    transform: translateY(24px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .reveal.in {

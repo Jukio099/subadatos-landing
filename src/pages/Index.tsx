@@ -28,6 +28,7 @@ const Index = () => {
     const setupAnimation = () => {
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
         el.classList.add('visible');
+        el.classList.remove('animate-hidden');
       });
       document.querySelectorAll('.stagger').forEach(el => {
         el.classList.add('visible');
