@@ -63,9 +63,13 @@ const Index = () => {
     setupAnimation();
     const timeoutId = setTimeout(setupAnimation, 300);
 
-    // Safety fallback: force all stagger elements visible after 3s
+    // Safety fallback: force all animated elements visible after 3s
     // This prevents black/hidden sections if the observer doesn't fire
     const safetyTimeout = setTimeout(() => {
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        el.classList.add('visible');
+        el.classList.remove('animate-hidden');
+      });
       document.querySelectorAll('.stagger').forEach(el => {
         if (!el.classList.contains('visible')) {
           el.classList.add('visible');
