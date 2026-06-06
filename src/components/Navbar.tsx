@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X, BarChart3, Newspaper, Sparkles } from 'lucide-react';
@@ -14,30 +13,18 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navigateToSection = (id: string) => {
     setIsMobileMenuOpen(false);
     if (location.pathname === '/') {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     } else {
       navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 350);
+      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 350);
     }
   };
 
@@ -51,135 +38,82 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-500",
+        'fixed left-0 top-0 z-50 w-full transition-all duration-500',
         isScrolled
-          ? "bg-black/70 backdrop-blur-xl border-b border-white/10 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
-          : "bg-black/30 backdrop-blur-md border-b border-white/5 py-4"
+          ? 'border-b border-slate-200 bg-white/90 py-2 shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl'
+          : 'border-b border-white/60 bg-white/55 py-4 backdrop-blur-md'
       )}
     >
       <div className="container-custom flex items-center justify-between">
-        <Link to="/" className="flex items-center group">
+        <Link to="/" className="group flex items-center">
           <div className="relative">
-            <div className="absolute inset-0 bg-suba-purple-600/40 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 rounded-full bg-suba-purple-600/20 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
             <img
               src="/lovable-uploads/9569de5a-057e-4973-b16b-1def60885893.webp"
               alt="SUBADATOS Logo"
-              className="h-11 w-11 mr-3 rounded-full object-cover ring-2 ring-suba-purple-500/40 group-hover:ring-suba-purple-400 group-hover:rotate-[8deg] transition-all duration-500 relative"
+              className="relative mr-3 h-11 w-11 rounded-full object-cover ring-2 ring-suba-purple-200 transition-all duration-500 group-hover:rotate-[8deg] group-hover:ring-suba-purple-500/50"
             />
           </div>
-          <div className="hidden sm:flex flex-col">
-            <span className="text-white font-display font-bold text-lg tracking-tight leading-none">SUBADATOS</span>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-suba-purple-300/80 leading-none mt-1">Inteligencia Ganadera</span>
+          <div className="hidden flex-col sm:flex">
+            <span className="font-display text-lg font-black leading-none tracking-tight text-slate-950">SUBADATOS</span>
+            <span className="mt-1 text-[10px] uppercase leading-none tracking-[0.18em] text-suba-green-700">Inteligencia Ganadera</span>
           </div>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-1">
+        <div className="hidden items-center space-x-1 md:flex">
           <a
             href={DASHBOARD_URL}
-            className="relative flex items-center group px-3 py-2 rounded-full hover:bg-white/5 transition-colors"
+            className="group relative flex items-center rounded-full px-3 py-2 transition-colors hover:bg-slate-100"
             target="_blank"
             rel="noopener noreferrer"
             data-event="consulta_precios_click"
             data-source="navbar_desktop"
           >
-            <div className="flex items-center text-white/90 group-hover:text-white transition-colors text-sm">
-              <BarChart3 className="h-4 w-4 mr-1.5 text-suba-purple-300" />
+            <div className="flex items-center text-sm font-semibold text-slate-700 transition-colors group-hover:text-slate-950">
+              <BarChart3 className="mr-1.5 h-4 w-4 text-suba-purple-700" />
               <span>Consulta de Precios</span>
             </div>
-            <Badge
-              variant="default"
-              className="ml-2 bg-gradient-to-r from-suba-gold-500 to-suba-gold-400 text-suba-dark-300 border-0 text-[10px] px-1.5 py-0 font-semibold"
-            >
-              Nuevo
-            </Badge>
+            <Badge className="ml-2 border-0 bg-gradient-to-r from-suba-gold-500 to-suba-gold-400 px-1.5 py-0 text-[10px] font-bold text-suba-dark-300">Nuevo</Badge>
           </a>
-          <Link
-            to="/noticias"
-            className="flex items-center text-white/90 hover:text-white hover:bg-white/5 px-3 py-2 rounded-full transition-colors text-sm"
-            data-event="noticias_click"
-            data-source="navbar_desktop"
-          >
-            <Newspaper className="h-4 w-4 mr-1.5 text-suba-green-400" />
+          <Link to="/noticias" className="flex items-center rounded-full px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950" data-event="noticias_click" data-source="navbar_desktop">
+            <Newspaper className="mr-1.5 h-4 w-4 text-suba-green-700" />
             <span>Noticias</span>
           </Link>
           {navLinks.map(({ label, id }) => (
-            <button
-              key={id}
-              onClick={() => navigateToSection(id)}
-              className="relative text-white/80 hover:text-white px-3 py-2 rounded-full hover:bg-white/5 transition-all text-sm group"
-            >
+            <button key={id} onClick={() => navigateToSection(id)} className="group relative rounded-full px-3 py-2 text-sm font-semibold text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-950">
               {label}
-              <span className="absolute left-1/2 -translate-x-1/2 bottom-0.5 w-0 group-hover:w-6 h-[2px] bg-gradient-to-r from-suba-purple-500 to-suba-green-500 transition-all duration-300 rounded-full" />
+              <span className="absolute bottom-0.5 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-suba-purple-500 to-suba-green-500 transition-all duration-300 group-hover:w-6" />
             </button>
           ))}
-          <Button
-            onClick={() => navigateToSection('contacto')}
-            className="ml-3 bg-gradient-to-r from-suba-purple-700 to-suba-purple-600 hover:from-suba-purple-600 hover:to-suba-purple-500 text-white border border-suba-purple-500/40 shadow-[0_0_20px_rgba(107,33,168,0.4)] hover:shadow-[0_0_30px_rgba(107,33,168,0.6)] rounded-full px-5 transition-all duration-300"
-          >
-            <Sparkles className="h-4 w-4 mr-1.5" />
+          <Button onClick={() => navigateToSection('contacto')} className="ml-3 rounded-full border border-suba-purple-500/20 bg-suba-purple-700 px-5 text-white shadow-[0_12px_28px_rgba(107,33,168,0.24)] transition-all duration-300 hover:bg-suba-purple-600">
+            <Sparkles className="mr-1.5 h-4 w-4" />
             Contáctanos
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-white hover:bg-white/10"
-          >
+          <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-slate-950 hover:bg-slate-100">
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </Button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden glass-strong border-t border-white/5 py-5 px-6 absolute top-full left-0 w-full animate-fade-in shadow-2xl">
+        <div className="absolute left-0 top-full w-full border-t border-slate-200 bg-white/95 px-6 py-5 shadow-2xl backdrop-blur-xl md:hidden">
           <div className="flex flex-col space-y-1">
-            <a
-              href={DASHBOARD_URL}
-              className="flex items-center justify-between text-white hover:text-suba-purple-300 hover:bg-white/5 transition-colors py-3 px-3 rounded-lg"
-              onClick={() => setIsMobileMenuOpen(false)}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-event="consulta_precios_click"
-              data-source="navbar_mobile"
-            >
-              <div className="flex items-center">
-                <BarChart3 className="h-4 w-4 mr-2 text-suba-purple-300" />
-                <span>Consulta de Precios</span>
-              </div>
-              <Badge className="bg-gradient-to-r from-suba-gold-500 to-suba-gold-400 text-suba-dark-300 border-0 text-[10px]">Nuevo</Badge>
+            <a href={DASHBOARD_URL} className="flex items-center justify-between rounded-lg px-3 py-3 text-slate-800 transition-colors hover:bg-slate-100 hover:text-suba-purple-800" onClick={() => setIsMobileMenuOpen(false)} target="_blank" rel="noopener noreferrer" data-event="consulta_precios_click" data-source="navbar_mobile">
+              <div className="flex items-center"><BarChart3 className="mr-2 h-4 w-4 text-suba-purple-700" /><span>Consulta de Precios</span></div>
+              <Badge className="border-0 bg-gradient-to-r from-suba-gold-500 to-suba-gold-400 text-[10px] text-suba-dark-300">Nuevo</Badge>
             </a>
-            <Link
-              to="/noticias"
-              className="flex items-center text-white hover:text-suba-green-300 hover:bg-white/5 transition-colors py-3 px-3 rounded-lg"
-              onClick={() => setIsMobileMenuOpen(false)}
-              data-event="noticias_click"
-              data-source="navbar_mobile"
-            >
-              <Newspaper className="h-4 w-4 mr-2 text-suba-green-400" />
-              <span>Noticias</span>
+            <Link to="/noticias" className="flex items-center rounded-lg px-3 py-3 text-slate-800 transition-colors hover:bg-slate-100 hover:text-suba-green-800" onClick={() => setIsMobileMenuOpen(false)} data-event="noticias_click" data-source="navbar_mobile">
+              <Newspaper className="mr-2 h-4 w-4 text-suba-green-700" /><span>Noticias</span>
             </Link>
-            <div className="h-px bg-white/5 my-2" />
+            <div className="my-2 h-px bg-slate-200" />
             {navLinks.map(({ label, id }) => (
-              <button
-                key={id}
-                onClick={() => navigateToSection(id)}
-                className="text-white/90 hover:text-white hover:bg-white/5 transition-colors py-3 px-3 rounded-lg text-left"
-              >
-                {label}
-              </button>
+              <button key={id} onClick={() => navigateToSection(id)} className="rounded-lg px-3 py-3 text-left text-slate-800 transition-colors hover:bg-slate-100 hover:text-slate-950">{label}</button>
             ))}
-            <Button
-              onClick={() => navigateToSection('contacto')}
-              className="mt-3 bg-gradient-to-r from-suba-purple-700 to-suba-purple-600 hover:from-suba-purple-600 hover:to-suba-purple-500 text-white border border-suba-purple-500/40 rounded-full w-full shadow-[0_0_20px_rgba(107,33,168,0.4)]"
-            >
-              <Sparkles className="h-4 w-4 mr-1.5" />
-              Contáctanos
+            <Button onClick={() => navigateToSection('contacto')} className="mt-3 w-full rounded-full border border-suba-purple-500/20 bg-suba-purple-700 text-white hover:bg-suba-purple-600">
+              <Sparkles className="mr-1.5 h-4 w-4" />Contáctanos
             </Button>
           </div>
         </div>

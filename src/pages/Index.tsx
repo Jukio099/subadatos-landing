@@ -75,7 +75,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-suba-dark-300">
+    <div className="min-h-screen flex flex-col bg-[#f8fbf7]">
       <Navbar />
       <Hero />
       <NeedsSection />
@@ -95,7 +95,7 @@ const Index = () => {
         aria-label="Contactar por WhatsApp"
         data-event="whatsapp_general"
         data-source="floating_button"
-        className="fixed bottom-6 left-6 z-50 group"
+        className="fixed bottom-6 right-6 z-50 group"
       >
         <div className="absolute -inset-1 bg-gradient-to-r from-suba-green-500 to-suba-green-400 rounded-full blur-md opacity-60 group-hover:opacity-100 transition-opacity" />
         <div className="relative bg-gradient-to-br from-suba-green-600 to-suba-green-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(22,163,74,0.5)] flex items-center justify-center group-hover:scale-105">
@@ -110,7 +110,7 @@ const Index = () => {
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Volver al inicio"
-          className="fixed bottom-6 right-6 z-50 group"
+          className="fixed bottom-24 right-6 z-50 group"
         >
           <div className="bg-gradient-to-br from-suba-purple-700 to-suba-purple-600 text-white p-3.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-[0_0_25px_rgba(107,33,168,0.5)] hover:scale-105 border border-suba-purple-500/30">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">

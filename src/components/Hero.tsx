@@ -1,293 +1,113 @@
-import { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, Phone, BarChart3, ArrowRight, Sparkles, TrendingUp, Activity } from 'lucide-react';
+import { ArrowRight, BarChart3, CheckCircle2, Phone, TrendingUp, Activity, MapPin } from 'lucide-react';
 import { DASHBOARD_URL, WHATSAPP_PRICES } from '@/config/constants';
 import { useCountUp } from '@/hooks/use-count-up';
 
-const TYPING_PHRASES = [
-  'el sector ganadero',
-  'la próxima subasta',
-  'su próxima decisión',
-  'el mercado bovino',
-];
-
 const Hero = () => {
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const datosCount = useCountUp({ end: 1, decimals: 0, duration: 1800, suffix: 'M+', startOnView: false });
+  const plazasCount = useCountUp({ end: 20, decimals: 0, duration: 1800, suffix: '+', startOnView: false });
+  const yearsCount = useCountUp({ end: 2, decimals: 0, duration: 1800, suffix: '+', startOnView: false });
 
-  const lotesCount = useCountUp({ end: 1, decimals: 0, duration: 1800, suffix: 'M+' });
-  const plazasCount = useCountUp({ end: 20, decimals: 0, duration: 1800, suffix: '+' });
-  const datosCount = useCountUp({ end: 1, decimals: 0, duration: 1800, suffix: 'M+' });
-
-  // Typewriter effect
-  const [typedText, setTypedText] = useState('');
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const phrase = TYPING_PHRASES[phraseIndex];
-    const speed = isDeleting ? 40 : 90;
-
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        const next = phrase.slice(0, typedText.length + 1);
-        setTypedText(next);
-        if (next === phrase) {
-          setTimeout(() => setIsDeleting(true), 1800);
-        }
-      } else {
-        const next = phrase.slice(0, typedText.length - 1);
-        setTypedText(next);
-        if (next === '') {
-          setIsDeleting(false);
-          setPhraseIndex((prev) => (prev + 1) % TYPING_PHRASES.length);
-        }
-      }
-    }, speed);
-
-    return () => clearTimeout(timeout);
-  }, [typedText, isDeleting, phraseIndex]);
-
-  // Spotlight cursor tracking (CSS-only via CSS vars)
-  useEffect(() => {
-    const section = heroRef.current;
-    if (!section) return;
-
-    const onMove = (e: MouseEvent) => {
-      const rect = section.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      section.style.setProperty('--mx', `${x}%`);
-      section.style.setProperty('--my', `${y}%`);
-    };
-
-    section.addEventListener('mousemove', onMove);
-    return () => section.removeEventListener('mousemove', onMove);
-  }, []);
+  const marketRows = [
+    { plaza: 'Yopal', categoria: 'Macho levante', precio: '$8.420/kg', trend: '+3,1%' },
+    { plaza: 'Montería', categoria: 'Novilla', precio: '$7.980/kg', trend: '+1,8%' },
+    { plaza: 'Medellín', categoria: 'Ceba', precio: '$8.760/kg', trend: '+2,4%' },
+  ];
 
   return (
-    <section
-      ref={heroRef}
-      id="inicio"
-      className="spotlight relative min-h-[100svh] flex items-center overflow-hidden bg-suba-dark-300"
-    >
-      {/* Animated background */}
-      <div className="absolute inset-0 z-0">
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-suba-dark-300 via-[#14091f] to-suba-dark-300" />
+    <section id="inicio" className="relative isolate overflow-hidden bg-[#f8fbf7] pt-28 sm:pt-32 lg:pt-36">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(107,33,168,0.14),transparent_34%),radial-gradient(circle_at_80%_10%,rgba(22,163,74,0.16),transparent_30%),linear-gradient(180deg,#ffffff_0%,#f8fbf7_58%,#f1f7ef_100%)]" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-suba-purple-400/50 to-transparent" />
+      <div className="absolute left-1/2 top-24 -z-10 h-[520px] w-[520px] -translate-x-1/2 rounded-full border border-suba-purple-200/50 bg-white/40 blur-3xl" />
 
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-grid opacity-40 animate-grid-pan" />
+      <div className="container-custom pb-16 sm:pb-20 lg:pb-28">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
+          <div className="max-w-3xl">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-suba-purple-200 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-suba-purple-800 shadow-sm backdrop-blur">
+              <span className="relative flex h-2.5 w-2.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-suba-green-500 opacity-60" /><span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-suba-green-600" /></span>
+              Datos en vivo · Ganadería colombiana
+            </div>
 
-        {/* Radial gradient glows */}
-        <div className="hero-glow bg-suba-purple-700 w-[500px] h-[500px] -top-32 -left-32 animate-blob-float" />
-        <div className="hero-glow bg-suba-green-600 w-[400px] h-[400px] top-1/2 -right-32 animate-blob-float" style={{ animationDelay: '2s' }} />
-        <div className="hero-glow bg-suba-gold-500 w-[300px] h-[300px] bottom-0 left-1/3 opacity-20 animate-blob-float" style={{ animationDelay: '4s' }} />
+            <h1 className="max-w-4xl font-display text-5xl font-black tracking-[-0.055em] text-suba-dark-300 sm:text-6xl lg:text-7xl xl:text-[5.4rem] leading-[0.93]">
+              Inteligencia de mercado para vender ganado con más certeza.
+            </h1>
 
-        {/* SVG data flow lines */}
-        <svg
-          className="absolute inset-0 w-full h-full opacity-50"
-          viewBox="0 0 1200 800"
-          preserveAspectRatio="xMidYMid slice"
-          aria-hidden="true"
-        >
-          <defs>
-            <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#6B21A8" stopOpacity="0" />
-              <stop offset="50%" stopColor="#a855f7" stopOpacity="0.7" />
-              <stop offset="100%" stopColor="#16A34A" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#16A34A" stopOpacity="0" />
-              <stop offset="50%" stopColor="#4ade80" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#6B21A8" stopOpacity="0" />
-            </linearGradient>
-            <radialGradient id="dotGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#a855f7" stopOpacity="1" />
-              <stop offset="100%" stopColor="#6B21A8" stopOpacity="0" />
-            </radialGradient>
-          </defs>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl">
+              Datos, visualizaciones y análisis para tomar mejores decisiones en compra y venta de ganado, sin perder tiempo revisando reportes sueltos de subastas.
+            </p>
 
-          <path
-            d="M 0 200 Q 300 100 600 250 T 1200 200"
-            stroke="url(#lineGrad1)"
-            strokeWidth="1.5"
-            fill="none"
-            strokeDasharray="8 8"
-            className="animate-data-flow"
-          />
-          <path
-            d="M 0 500 Q 400 350 700 480 T 1200 400"
-            stroke="url(#lineGrad2)"
-            strokeWidth="1.5"
-            fill="none"
-            strokeDasharray="8 8"
-            className="animate-data-flow"
-            style={{ animationDelay: '1.5s' }}
-          />
-          <path
-            d="M 0 650 Q 300 550 600 620 T 1200 600"
-            stroke="url(#lineGrad1)"
-            strokeWidth="1"
-            fill="none"
-            strokeDasharray="4 6"
-            className="animate-data-flow"
-            style={{ animationDelay: '2.5s' }}
-          />
-          <path
-            d="M 0 100 Q 200 200 500 150 T 1200 100"
-            stroke="url(#lineGrad2)"
-            strokeWidth="1"
-            fill="none"
-            strokeDasharray="4 6"
-            className="animate-data-flow"
-            style={{ animationDelay: '0.5s' }}
-          />
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer" data-event="consulta_precios_click" data-source="hero_primary">
+                <Button className="h-14 rounded-full bg-suba-purple-700 px-7 text-base font-bold text-white shadow-[0_18px_42px_rgba(107,33,168,0.28)] transition-all hover:-translate-y-0.5 hover:bg-suba-purple-600">
+                  <BarChart3 className="mr-2 h-5 w-5" /> Explorar datos <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </a>
+              <a href={WHATSAPP_PRICES} target="_blank" rel="noopener noreferrer" data-event="whatsapp_precios" data-source="hero_secondary">
+                <Button variant="outline" className="h-14 rounded-full border-suba-green-600/30 bg-white px-7 text-base font-bold text-suba-green-700 shadow-sm hover:bg-suba-green-50 hover:text-suba-green-800">
+                  <Phone className="mr-2 h-5 w-5" /> Consultar por WhatsApp
+                </Button>
+              </a>
+            </div>
 
-          <circle cx="150" cy="180" r="3" fill="url(#dotGrad)" className="animate-glow-pulse" />
-          <circle cx="450" cy="120" r="2" fill="url(#dotGrad)" className="animate-glow-pulse" style={{ animationDelay: '1s' }} />
-          <circle cx="850" cy="350" r="3" fill="url(#dotGrad)" className="animate-glow-pulse" style={{ animationDelay: '2s' }} />
-          <circle cx="1050" cy="200" r="2" fill="url(#dotGrad)" className="animate-glow-pulse" style={{ animationDelay: '0.5s' }} />
-          <circle cx="600" cy="500" r="2.5" fill="url(#dotGrad)" className="animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
-          <circle cx="300" cy="600" r="2" fill="url(#dotGrad)" className="animate-glow-pulse" style={{ animationDelay: '2.5s' }} />
-        </svg>
-
-        {/* Floating particles */}
-        <div className="particles">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <span key={i} style={{ left: `${(i * 8.3) % 100}%`, animationDelay: `${i * 0.7}s` }} />
-          ))}
-        </div>
-
-        {/* Top/bottom fade overlays */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-suba-dark-300 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-suba-dark-300 to-transparent" />
-      </div>
-
-      <div className="container-custom relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full glass-light border border-suba-purple-500/30 animate-fade-in">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-suba-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-suba-green-500"></span>
-            </span>
-            <Activity className="h-3.5 w-3.5 text-suba-green-400" />
-            <span className="text-xs sm:text-sm text-white/90 font-medium tracking-wide">
-              Datos en vivo · Subastas colombianas
-            </span>
+            <div className="mt-10 grid max-w-2xl grid-cols-3 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+              {[
+                { ref: datosCount.ref, value: datosCount.value, label: 'Datos analizados' },
+                { ref: plazasCount.ref, value: plazasCount.value, label: 'Plazas monitoreadas' },
+                { ref: yearsCount.ref, value: yearsCount.value, label: 'Años de experiencia' },
+              ].map((stat, index) => (
+                <div key={stat.label} className={`p-4 sm:p-5 ${index !== 0 ? 'border-l border-slate-200' : ''}`}>
+                  <div ref={stat.ref} className="font-display text-2xl font-black text-suba-purple-800 sm:text-3xl">{stat.value}</div>
+                  <div className="mt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight">
-            <span className="block animate-fade-in-up">Inteligencia de mercado para</span>
-            <span className="block mt-2 text-gradient-flow typewriter-caret min-h-[1.1em]">
-              {typedText || '\u00A0'}
-            </span>
-          </h1>
-
-          <p
-            className="text-base sm:text-lg md:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up"
-            style={{ animationDelay: '0.15s', opacity: 0, animationFillMode: 'forwards' }}
-          >
-            Datos, visualizaciones y análisis para tomar mejores decisiones
-            en compra y venta de ganado.
-          </p>
-
-          <div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up"
-            style={{ animationDelay: '0.3s', opacity: 0, animationFillMode: 'forwards' }}
-          >
-            <a
-              href={DASHBOARD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-block"
-              data-event="consulta_precios_click"
-              data-source="hero_primary"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-suba-purple-600 to-suba-green-500 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500 animate-pulse-glow" />
-              <Button className="btn-shine relative bg-gradient-to-r from-suba-purple-700 to-suba-purple-600 hover:from-suba-purple-600 hover:to-suba-purple-500 text-white text-base sm:text-lg py-6 px-8 rounded-full font-semibold border border-suba-purple-400/40 transition-all duration-300 group-hover:scale-[1.03]">
-                <BarChart3 className="mr-2 h-5 w-5" />
-                Explorar datos
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </a>
-            <a
-              href={WHATSAPP_PRICES}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-block"
-              data-event="whatsapp_precios"
-              data-source="hero_secondary"
-            >
-              <Button
-                variant="outline"
-                className="bg-white/5 hover:bg-white/10 border-white/20 hover:border-white/40 text-white text-base sm:text-lg py-6 px-8 rounded-full font-semibold backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]"
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                Conocer SubaDatos
-              </Button>
-            </a>
-          </div>
-
-          {/* Stats row */}
-          <div className="mt-14 grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl mx-auto stagger visible">
-            {[
-              { ref: lotesCount.ref, value: lotesCount.value, label: 'Lotes analizados', icon: TrendingUp, color: 'text-suba-purple-300' },
-              { ref: plazasCount.ref, value: plazasCount.value, label: 'Plazas', icon: Sparkles, color: 'text-suba-gold-400' },
-              { ref: datosCount.ref, value: datosCount.value, label: 'Datos', icon: BarChart3, color: 'text-suba-green-400' },
-            ].map(({ ref, value, label, icon: Icon, color }) => (
-              <div
-                key={label}
-                className="relative glass-light rounded-2xl px-3 py-4 sm:px-5 sm:py-5 border border-white/5 hover:border-suba-purple-500/40 transition-colors group overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-suba-purple-500/0 to-suba-green-500/0 group-hover:from-suba-purple-500/10 group-hover:to-suba-green-500/5 transition-all duration-500" />
-                <div className="relative">
-                  <div className="flex items-center justify-center gap-1.5 mb-1.5">
-                    <Icon className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${color} group-hover:scale-110 transition-transform`} />
-                    <span ref={ref} className={`text-xl sm:text-2xl md:text-3xl font-bold font-display ${color}`}>
-                      {value}
-                    </span>
-                  </div>
-                  <span className="text-[10px] sm:text-xs uppercase tracking-[0.12em] text-white/60 block">
-                    {label}
-                  </span>
+          <div className="relative lg:pl-4">
+            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-suba-purple-500/20 via-white to-suba-green-500/20 blur-2xl" />
+            <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_28px_80px_rgba(15,23,42,0.15)]">
+              <div className="border-b border-slate-200 bg-slate-950 px-5 py-4 text-white">
+                <div className="flex items-center justify-between gap-4">
+                  <div><p className="text-xs font-bold uppercase tracking-[0.18em] text-suba-green-300">SUBADATOS LIVE</p><h2 className="mt-1 text-xl font-black">Panel de precios ganaderos</h2></div>
+                  <div className="rounded-full bg-suba-green-500/15 px-3 py-1 text-xs font-bold text-suba-green-300 ring-1 ring-suba-green-400/30">Actualizado</div>
                 </div>
               </div>
-            ))}
-          </div>
 
-          {/* Floating badges */}
-          <div className="mt-12 hidden md:flex flex-wrap items-center justify-center gap-3 animate-fade-in-up" style={{ animationDelay: '0.45s' }}>
-            {['Atención por WhatsApp', 'Subastas en vivo', 'Datos para compra y venta'].map((item, i) => (
-              <div
-                key={item}
-                className="inline-flex items-center gap-2 px-3 py-1.5 glass-light rounded-full border border-white/5 text-xs text-white/80"
-                style={{ animation: `fade-in-up 0.6s ease-out ${0.5 + i * 0.1}s both` }}
-              >
-                <span className="w-1.5 h-1.5 bg-suba-green-400 rounded-full animate-pulse" />
-                {item}
+              <div className="p-5 sm:p-6">
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {[
+                    { icon: TrendingUp, label: 'Tendencia', value: '+2,6%', color: 'text-suba-green-700 bg-suba-green-50' },
+                    { icon: MapPin, label: 'Municipios', value: '20+', color: 'text-suba-purple-700 bg-suba-purple-50' },
+                    { icon: Activity, label: 'Señales', value: 'En vivo', color: 'text-amber-700 bg-amber-50' },
+                  ].map(({ icon: Icon, label, value, color }) => (
+                    <div key={label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <div className={`mb-3 flex h-9 w-9 items-center justify-center rounded-xl ${color}`}><Icon className="h-4 w-4" /></div>
+                      <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">{label}</p>
+                      <p className="mt-1 text-lg font-black text-slate-950">{value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
+                  <div className="mb-4 flex items-center justify-between"><p className="text-sm font-black text-slate-950">Últimas referencias</p><p className="text-xs font-bold text-slate-500">COP/kg</p></div>
+                  <div className="space-y-3">
+                    {marketRows.map((row) => (
+                      <div key={`${row.plaza}-${row.categoria}`} className="grid grid-cols-[1fr_auto] gap-3 rounded-xl bg-slate-50 p-3">
+                        <div><p className="font-bold text-slate-950">{row.plaza}</p><p className="text-sm text-slate-500">{row.categoria}</p></div>
+                        <div className="text-right"><p className="font-black text-slate-950">{row.precio}</p><p className="text-xs font-bold text-suba-green-700">{row.trend}</p></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-gradient-to-br from-suba-purple-800 to-suba-green-700 p-5 text-white">
+                  <div className="flex items-start gap-3"><CheckCircle2 className="mt-1 h-5 w-5 text-suba-green-200" /><div><p className="font-black">Lectura accionable del mercado</p><p className="mt-1 text-sm leading-6 text-white/75">Compare plazas, categorías y tendencias antes de comprar o vender.</p></div></div>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Scroll Down Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-        <button
-          onClick={() => scrollToSection('necesidades')}
-          className="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors group"
-          aria-label="Descubrir más"
-        >
-          <span className="text-xs uppercase tracking-[0.2em]">Descubre más</span>
-          <div className="scroll-indicator group-hover:border-suba-purple-400 transition-colors" />
-        </button>
-      </div>
-
-      {/* Bottom gradient line accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-suba-purple-500/50 to-transparent" />
     </section>
   );
 };
