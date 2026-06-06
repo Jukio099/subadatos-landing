@@ -402,6 +402,21 @@
     transform: translateY(0);
   }
 
+  /* Fix: gradient text (background-clip:text) breaks when .word has overflow:hidden */
+  .word-reveal.text-gradient .word,
+  .word-reveal.text-gradient-purple .word,
+  .word-reveal.text-gradient-green .word,
+  .word-reveal.text-gradient-gold .word {
+    overflow: visible;
+    display: inline;
+  }
+  .word-reveal.text-gradient .word > span,
+  .word-reveal.text-gradient-purple .word > span,
+  .word-reveal.text-gradient-green .word > span,
+  .word-reveal.text-gradient-gold .word > span {
+    display: inline;
+  }
+
   /* Animated moving gradient for titles */
   .text-gradient-flow {
     background: linear-gradient(90deg, #a855f7 0%, #6B21A8 25%, #16A34A 50%, #6B21A8 75%, #a855f7 100%);
