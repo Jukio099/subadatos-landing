@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import MarketTicker from '@/components/MarketTicker';
 import About from '@/components/About';
 import Products from '@/components/Products';
 import Benefits from '@/components/Benefits';
@@ -78,6 +79,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-[#f8fbf7]">
       <Navbar />
       <Hero />
+      <MarketTicker />
       <NeedsSection />
       <Products />
       <About />
