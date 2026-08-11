@@ -1,45 +1,5 @@
 {
-  "redirects": [
-    {
-      "source": "/dashboard",
-      "destination": "https://subadatos-centralganadera.streamlit.app",
-      "permanent": true
-    }
-  ],
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/checkout", "destination": "/index.html" },
-    { "source": "/pago-exitoso", "destination": "/index.html" },
-    { "source": "/noticias", "destination": "/index.html" },
-    { "source": "/noticias/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/checkout",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
-      "source": "/pago-exitoso",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
-      "source": "/dashboard",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, follow"
-        }
-      ]
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
