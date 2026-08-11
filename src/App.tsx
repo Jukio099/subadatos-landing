@@ -10,6 +10,7 @@ import Checkout from "./pages/Checkout";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import Noticias from "./pages/Noticias";
 import NoticiaDetalle from "./pages/NoticiaDetalle";
+import HermesGold from "./pages/HermesGold";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/noticias/:slug" element={<NoticiaDetalle />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/pago-exitoso" element={<PaymentSuccess />} />
+            <Route path="/gold" element={<HermesGold />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

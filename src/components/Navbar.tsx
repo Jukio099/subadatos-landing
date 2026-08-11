@@ -79,6 +79,10 @@ const Navbar = () => {
             <Newspaper className="mr-1.5 h-4 w-4 text-suba-green-700" />
             <span>Noticias</span>
           </Link>
+          <Link to="/gold" className="flex items-center rounded-full border border-amber-400/35 bg-amber-50 px-3 py-2 text-sm font-bold text-amber-900 transition-colors hover:bg-amber-100" data-event="hermes_gold_click" data-source="navbar_desktop">
+            <Sparkles className="mr-1.5 h-4 w-4 text-amber-700" />
+            <span>Hermes Gold</span>
+          </Link>
           {navLinks.map(({ label, id }) => (
             <button key={id} onClick={() => navigateToSection(id)} className="group relative rounded-full px-3 py-2 text-sm font-semibold text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-950">
               {label}
@@ -107,6 +111,9 @@ const Navbar = () => {
             </a>
             <Link to="/noticias" className="flex items-center rounded-lg px-3 py-3 text-slate-800 transition-colors hover:bg-slate-100 hover:text-suba-green-800" onClick={() => setIsMobileMenuOpen(false)} data-event="noticias_click" data-source="navbar_mobile">
               <Newspaper className="mr-2 h-4 w-4 text-suba-green-700" /><span>Noticias</span>
+            </Link>
+            <Link to="/gold" className="flex items-center rounded-lg bg-amber-50 px-3 py-3 font-bold text-amber-900 transition-colors hover:bg-amber-100" onClick={() => setIsMobileMenuOpen(false)} data-event="hermes_gold_click" data-source="navbar_mobile">
+              <Sparkles className="mr-2 h-4 w-4 text-amber-700" /><span>Hermes Gold</span>
             </Link>
             <div className="my-2 h-px bg-slate-200" />
             {navLinks.map(({ label, id }) => (
