@@ -7,23 +7,26 @@ const encode = (text: string) => encodeURIComponent(text);
 const whatsapp = (message: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encode(message)}`;
 
 export const WHATSAPP_GENERAL = whatsapp(
-  "Hola, vengo de la página de SubaDatos. Quiero más información sobre sus servicios para tomar mejores decisiones con datos ganaderos. Mi ubicación es: ___"
+  "Hola, vengo de SubaDatos. Quiero información sobre precios de subasta ganadera."
 );
 
 export const WHATSAPP_PRICES = whatsapp(
-  "Hola, vengo de la página de SubaDatos. Quiero consultar precios de ganado por plaza/categoría antes de negociar. Plaza o región: ___ Categoría: ___ Peso aproximado: ___"
+  "Hola, vengo de SubaDatos. Quiero consultar precios de ganado por plaza y categoría."
 );
 
 export const WHATSAPP_CONSULTING = whatsapp(
-  "Hola, vengo de la página de SubaDatos. Quiero una asesoría para revisar precios de ganado en subasta y saber si es buen momento para vender. Mi ubicación es: ___"
+  "Hola, vengo de SubaDatos. Quiero una asesoría para revisar si es buen momento de vender."
 );
 
 export const WHATSAPP_SEEDS = whatsapp(
-  "Hola, vengo de la página de SubaDatos. Quiero información/cotización de semillas de pasto. Mi finca está en: ___"
+  "Hola, vengo de SubaDatos. Quiero cotizar semillas de pasto."
 );
 
 export const WHATSAPP_SCALES = whatsapp(
-  "Hola, vengo de la página de SubaDatos. Quiero cotizar una báscula ganadera. Ubicación: ___ Capacidad aproximada requerida: ___"
+  "Hola, vengo de SubaDatos. Quiero cotizar una báscula ganadera."
 );
+
+export const whatsappPreciosPlaza = (plaza: string) =>
+  whatsapp(`Hola, vengo de SubaDatos. Quiero consultar precios de ${plaza}.`);
 
 export const WHATSAPP_DATA_SERVICES = WHATSAPP_CONSULTING;

@@ -4,7 +4,6 @@ import { Badge } from '@/components/ui/badge';
 import { formatArticleDate, latestNews } from '@/content/noticias';
 import { ArrowRight, Newspaper, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { WordReveal } from './WordReveal';
 
 const categoryColors: Record<string, string> = {
   'Normatividad': 'from-suba-purple-600 to-suba-purple-700',
@@ -39,16 +38,15 @@ const NewsPreview = () => {
               <Sparkles className="h-4 w-4" /> Radar Ganadero
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              <WordReveal>Noticias que</WordReveal>{' '}
-              <WordReveal className="text-gradient" delay={250}>sí le sirven al ganadero</WordReveal>
+              Guías que sí le sirven al ganadero
             </h2>
             <p className="text-white/50 mt-4 text-sm md:text-base">
-              Análisis cortos para entender trámites, tecnología, mercado y señales que pueden afectar decisiones de compra, venta o movilización.
+              ICA SIGMA, SINIGAN y trámites explicados para el productor. No son titulares del día: son checklists que siguen vigentes.
             </p>
           </div>
           <Button asChild variant="outline" className="self-start md:self-auto border-white/10 text-white hover:bg-white/5 hover:border-suba-purple-500/40 rounded-full">
             <Link to="/noticias">
-              Ver todas <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1" />
+              Ver guías <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>

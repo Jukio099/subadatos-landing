@@ -12,7 +12,10 @@
     { "source": "/pago-exitoso", "destination": "/index.html" },
     { "source": "/noticias", "destination": "/index.html" },
     { "source": "/noticias/(.*)", "destination": "/index.html" },
-    { "source": "/gold", "destination": "/index.html" }
+    { "source": "/gold", "destination": "/index.html" },
+    { "source": "/precios", "destination": "/index.html" },
+    { "source": "/precios/(.*)", "destination": "/index.html" },
+    { "source": "/finca", "destination": "/index.html" }
   ],
   "headers": [
     {

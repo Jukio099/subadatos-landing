@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Phone, Mail, MapPin, Calendar, Sparkles } from 'lucide-react';
 import { WHATSAPP_GENERAL, DISPLAY_PHONE, EMAIL } from '@/config/constants';
-import { WordReveal } from './WordReveal';
 
 declare global {
   interface Window {
@@ -70,15 +69,11 @@ const Contact = () => {
       <div className="container-custom relative z-10 py-14 md:py-20">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            <WordReveal>Convierte</WordReveal>{' '}
-            <WordReveal className="text-gradient" delay={250}>datos ganaderos</WordReveal>
-            {' '}
-            <WordReveal delay={500}>en decisiones rentables</WordReveal>
+            Pregunte por su plaza y categoría
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-suba-purple-500 to-suba-green-500 mx-auto mb-6 rounded-full" />
           <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto">
-    Estamos aquí para asesorarte y ofrecerte los mejores servicios para tu empresa.
-            Respondemos rápidamente por WhatsApp.
+            Le respondemos por WhatsApp con la última referencia de subasta. Sin formularios largos.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -112,7 +107,7 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="font-semibold text-white text-sm mb-1">Dirección</h4>
-                <p className="text-white/60 text-sm">Colombia</p>
+                <p className="text-white/60 text-sm">Colombia · cobertura nacional de subastas</p>
               </div>
             </div>
 

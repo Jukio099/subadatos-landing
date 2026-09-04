@@ -1,5 +1,5 @@
-import { Phone, Mail, MapPin, ArrowRight, Facebook, Instagram, Sparkles } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Phone, Mail, MapPin, ArrowRight, Facebook, Instagram } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { WHATSAPP_GENERAL, DISPLAY_PHONE, EMAIL } from '@/config/constants';
 
 const Footer = () => {
@@ -74,19 +74,28 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { label: 'Inicio', id: 'inicio' },
-                { label: 'Nosotros', id: 'nosotros' },
-                { label: 'Productos', id: 'productos' },
-                { label: 'Beneficios', id: 'beneficios' },
+                { label: 'Precios', to: '/precios' },
+                { label: 'Cómo funciona', id: 'como' },
+                { label: 'Guías', to: '/noticias' },
+                { label: 'Finca', to: '/finca' },
                 { label: 'Contáctanos', id: 'contacto' },
-              ].map(({ label, id }) => (
-                <li key={id}>
-                  <button
-                    onClick={() => navigateToSection(id)}
-                    className="text-white/50 hover:text-white flex items-center gap-2 text-sm transition-colors group"
-                  >
-                    <ArrowRight className="h-3 w-3 text-suba-purple-500/0 group-hover:text-suba-purple-400 transition-all duration-300 group-hover:translate-x-0.5" />
-                    {label}
-                  </button>
+              ].map((item) => (
+                <li key={item.label}>
+                  {'to' in item && item.to ? (
+                    <Link to={item.to} className="text-white/50 hover:text-white flex items-center gap-2 text-sm transition-colors group">
+                      <ArrowRight className="h-3 w-3 text-suba-purple-500/0 group-hover:text-suba-purple-400 transition-all duration-300 group-hover:translate-x-0.5" />
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => item.id && navigateToSection(item.id)}
+                      className="text-white/50 hover:text-white flex items-center gap-2 text-sm transition-colors group"
+                    >
+                      <ArrowRight className="h-3 w-3 text-suba-purple-500/0 group-hover:text-suba-purple-400 transition-all duration-300 group-hover:translate-x-0.5" />
+                      {item.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -100,17 +109,16 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               {[
-                'Consulta de Precios',
-                'Asesoría Ganadera',
-                'Dashboards',
-                'Boletines de Mercado',
-                'Bases de Datos',
+                { label: 'Precios de subasta', to: '/precios' },
+                { label: 'Guías ganaderas', to: '/noticias' },
+                { label: 'Semillas y básculas', to: '/finca' },
+                { label: 'Hermes Gold', to: '/gold' },
               ].map((service) => (
-                <li key={service}>
-                  <span className="text-white/50 text-sm flex items-center gap-2">
+                <li key={service.label}>
+                  <Link to={service.to} className="text-white/50 text-sm flex items-center gap-2 hover:text-white">
                     <span className="w-1.5 h-1.5 rounded-full bg-suba-green-500/60" />
-                    {service}
-                  </span>
+                    {service.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -125,7 +133,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-suba-purple-400 mt-0.5 shrink-0" />
-                <span className="text-white/50 text-sm">Colombia</span>
+                <span className="text-white/50 text-sm">Colombia · cobertura nacional de subastas</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="h-4 w-4 text-suba-green-400 mt-0.5 shrink-0" />

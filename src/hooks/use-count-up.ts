@@ -44,7 +44,11 @@ export function useCountUp({
     );
 
     const node = ref.current;
-    if (node) observer.observe(node);
+    if (node) {
+      observer.observe(node);
+    } else {
+      animate(0);
+    }
 
     return () => {
       if (node) observer.unobserve(node);
